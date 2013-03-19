@@ -10,9 +10,9 @@ forked at www.github.com/hugovincent/GlassCockpit.
 The original project and the fork at www.gitorious.org/albatross/albatross
 come under a modified BSD license, although it does appear that the gitorious 
 fork intended to license new code under the GPL it was never done. The licensing
-of Hugo Vincent's fork of the albatross project on Github is questionable, i.e.
-the relicensing of the original source and those modified on the albatross
-project without the original authors consent.
+of Hugo Vincent's fork of the albatross project on Github is questionable, e.g.
+the relicensing of the original source, as well as, those modified on the 
+albatross project without the original authors consent, but IANAL.
 
 Note, this project is essentially a fork of the albatross project from gitorious
 with changes merged in from Hugo Vincent's Github fork; much author attribution
