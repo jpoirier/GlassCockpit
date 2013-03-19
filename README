@@ -4,10 +4,10 @@ _______________________________________________________________________________
 _______________________________________________________________________________
 
 The original OpenGC was created by Damian Shelton (damion at opengc.org) at
-www.opengc.org and forked at gitorious.org/albatross/albatross/ and again 
-forked at github.com/hugovincent/GlassCockpit.
+www.opengc.org and forked at www.gitorious.org/albatross/albatross/ and again 
+forked at www.github.com/hugovincent/GlassCockpit.
 
-The original project along with the fork at gitorious.org/albatross/albatross
+The original project along with the fork at www.gitorious.org/albatross/albatross
 come under a modified BSD license, although it does appear that the gitorious 
 fork intended to license new code under the GPL it was never done. The licensing
 of Hugo Vincent's fork of the albatross project on Github is questionable, i.e.
