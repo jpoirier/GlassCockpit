@@ -1,0 +1,3 @@
+
+
+xcodebuild -project GlassCockpit.xcodeproj -alltargets -configuration Debug
