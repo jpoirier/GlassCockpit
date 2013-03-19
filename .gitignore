@@ -13,3 +13,5 @@ Data/MGMapsCache~~
 Data/Navigation/apt_dat.bin
 Data/Navigation/nav_dat.bin
 PlatformSupport/iOS/GlassCockpit.xcodeproj/project.xcworkspace/
+Util/*.map
+archives/
