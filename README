@@ -12,8 +12,7 @@ The licensing is layered GPLv3/Modified-BSD and GPLv3/GPLv2
 Note, this project is essentially a fork of the albatross project from gitorious,
 with changes merged in from Hugo Vincent's Github fork.    
 
-See COPYING, gpl-2.0.txt, and gpl-3.0.txt for license details.
-
+See the Copyright section (2) below for further details.
 
 _______________________________________________________________________________
 
@@ -44,9 +43,10 @@ All rights reserved.
  
 OpenGC is free software. Some parts of OpenGC are to 
 be redistributed and/or modified under the terms of the
-GNU General Public License (GPL) version 2.0 and version 2.0. 
+GNU General Public License (GPL) version 2.0 and version 3.0. 
 
-See COPYING file for precise terms and conditions of the license.
+See COPYING, gpl-2.0.txt, and gpl-3.0.txt for precise terms and conditions
+of the license.
 
 _______________________________________________________________________________
 
