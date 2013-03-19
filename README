@@ -54,16 +54,21 @@ _______________________________________________________________________________
 _______________________________________________________________________________
 
 0) Dependencies: On Ubuntu 10.10, these dependencies were needed:
-		$ sudo apt-get install libfltk1.1-dev libxml2-dev libftgl2-dev
+	$ sudo apt-get install libfltk1.1-dev libxml2-dev libftgl2-dev
+
 1) Compile with Scons:
-		$ scons -C PlatformSupport/Linux
+	$ scons -C PlatformSupport/Linux
+
 2) Modify default paths in Data/Preferences.xml and Data/Default.xml
+
 3) Now run it in test mode:
-		$ ./PlatformSupport/Linux/build/GlassCockpit -t
+	$ ./PlatformSupport/Linux/build/GlassCockpit -t
+
    or in flight mode:
-		$ ./PlatformSupport/Linux/build/GlassCockpit
+	$ ./PlatformSupport/Linux/build/GlassCockpit
+
    or attach it to a running FlightGear simulator:
-		$ ./PlatformSupport/Linux/build/GlassCockpit -slocalhost:5800 # format is host:port
+	$ ./PlatformSupport/Linux/build/GlassCockpit -slocalhost:5800 # format is host:port
 
 _______________________________________________________________________________
 
