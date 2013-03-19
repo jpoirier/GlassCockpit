@@ -4,29 +4,16 @@ _______________________________________________________________________________
 _______________________________________________________________________________
 
 The original OpenGC was created by Damian Shelton (damion at opengc.org) at
-www.opengc.org and forked at www.gitorious.org/albatross/albatross/ and again 
-forked at www.github.com/hugovincent/GlassCockpit.
+www.opengc.org with forks existing at www.gitorious.org/albatross/albatross/
+and at www.github.com/hugovincent/GlassCockpit.
 
-The original project and the fork at www.gitorious.org/albatross/albatross
-come under a modified BSD license, although it does appear that the gitorious 
-fork intended to license new code under the GPL it was never done. The licensing
-of Hugo Vincent's fork of the albatross project on Github is questionable, e.g.
-the relicensing of the original source, as well as, those modified on the 
-albatross project without the original authors consent, but IANAL.
+The licensing is layered GPLv3/Modified-BSD and GPLv3/GPLv2
 
-Note, this project is essentially a fork of the albatross project from gitorious
-with changes merged in from Hugo Vincent's Github fork; much author attribution
-has been put back in place.    
+Note, this project is essentially a fork of the albatross project from gitorious,
+with changes merged in from Hugo Vincent's Github fork.    
 
-The only files not under the modified BSD license from the original project
-are CoursePoint.cpp and CoursePoint.h (in Source/Navigation) which are GPL v3.
-_______________________________________________________________________________
+See COPYING, gpl-2.0.txt, and gpl-3.0.txt for license details.
 
-	
-_______________________________________________________________________________
-
-
-	OpenGC Glass Cockpit and Groundstation for the Albatross UAV
 
 _______________________________________________________________________________
 
@@ -38,11 +25,11 @@ OpenGC was originally authored by Damion Shelton for use by flight simulator
 enthusiasts in 2001-2004, and has been substantially modified and improved to
 suit realtime monitoring of autonomous aircraft from the ground. 
 
-FIXME this description is quite poor.
 
 For more information see the project web sites at:
 OpenGC - http://www.opengc.org
-Albatross UAV - http://www.albatross-uav.org
+Albatross UAV - http://www.gitorious.org/albatross/albatross/
+OpenGC - http://www.github.com/hugovincent/GlassCockpit
 
 _______________________________________________________________________________
 
