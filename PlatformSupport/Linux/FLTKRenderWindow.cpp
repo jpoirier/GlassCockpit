@@ -1,18 +1,18 @@
 /*=========================================================================
+    OpenGC - The Open Source Glass Cockpit Project
 
-  OpenGC - The Open Source Glass Cockpit Project
-  Please see our web site at http://www.opengc.org
+    Copyright (c) 2001-2004 Damion Shelton
+    Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
+    Copyright (c) 2008-2010 Yuriy Kinakh <ykinakh@gmail.com>
+    Copyright (c) 2008-2010 Bohdan Mushkevych <mushkevych@gmail.com>
+    All rights reserved.
 
-  Albatross UAV Project - http://www.albatross-uav.org
+    This branch of OpenGC is developed within "Albatross UAV Project"
+    http://gitorious.org/albatross/
 
-  Copyright (c) 2001-2003 Damion Shelton
-  All rights reserved. Contributions by Hugo Vincent.
-  See Copyright.txt or http://www.opengc.org/Copyright.htm for details.
-
-  This software is distributed WITHOUT ANY WARRANTY; without even 
-  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
-  PURPOSE.  See the above copyright notice for more information.
-
+    This software is distributed WITHOUT ANY WARRANTY; without even
+    the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See Copyright.txt or http://opengc.sourceforge.net/licensing.html for more information.
 =========================================================================*/
 
 #include <iostream>

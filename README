@@ -1,8 +1,32 @@
+_______________________________________________________________________________
+
+	Preamble
+_______________________________________________________________________________
+
+The original OpenGC was created by Damian Shelton (damion at opengc.org) at
+www.opengc.org and forked at gitorious.org/albatross/albatross/ and again 
+forked at github.com/hugovincent/GlassCockpit.
+
+The original project along with the fork at gitorious.org/albatross/albatross
+come under a modified BSD license, although it does appear that the gitorious 
+fork intended to license new code under the GPL it was never done. The licensing
+of Hugo Vincent's fork of the albatross project on Github is questionable, i.e.
+the relicensing of the original and those from the albatross project without 
+the original authors consent.
+
+This is essentially a fork of the albatross project from gitorious with merged
+changes from Hugo Vincent's fork. All author attributions have been reinstated
+in the files.    
+
+The only files not under the modified BSD license are CoursePoint.cpp and 
+CoursePoint.h which are GPL v3.
+_______________________________________________________________________________
+
+	
+_______________________________________________________________________________
+
 
 	OpenGC Glass Cockpit and Groundstation for the Albatross UAV
-	
-							Hugo Vincent
-							12 July 2010
 
 _______________________________________________________________________________
 
@@ -11,11 +35,14 @@ _______________________________________________________________________________
 
 OpenGC is part of the groundstation software for the Albatross UAV project.
 OpenGC was originally authored by Damion Shelton for use by flight simulator
-enthusiasts in 2001-2004, and subsequently has been modified and improved to
-suit realtime monitoring of aircraft, such as autonomous aircraft (remotely from
-the ground), or perhaps for use in the cockpit of piloted aircraft. 
+enthusiasts in 2001-2004, and has been substantially modified and improved to
+suit realtime monitoring of automomous aircraft from the ground. 
 
-To get an idea for what does not yet work, or work correctly, see the TODO file.
+FIXME this description is quite poor.
+
+For more information see the project web sites at:
+OpenGC - http://www.opengc.org
+Albatross UAV - http://www.albatross-uav.org
 
 _______________________________________________________________________________
 
@@ -24,22 +51,16 @@ _______________________________________________________________________________
 
 Copyright (c) 2001-2004 Damion Shelton
 Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
+Copyright (c) 2008-2010 Yuriy Kinakh <ykinakh@gmail.com>
+Copyright (c) 2008-2010 Bohdan Mushkevych <mushkevych@gmail.com>
 All rights reserved.
 
-This project is distributed under the terms of the GNU General Public License
-Version 3 <http://www.gnu.org/licenses/gpl.html>. 
+Some parts 
+OpenGC is free software. Some parts of OpenGC are to 
+be redistributed and/or modified under the terms of the
+GNU General Public License (GPL) version 2.0. 
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, specifically version 3 of the License.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+See COPYING file for precise terms and conditions of the license.
 
 _______________________________________________________________________________
 
