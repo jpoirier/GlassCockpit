@@ -2,7 +2,7 @@
 
 <GaugeSpecification>
 
-<!-- This file defines the possible Gauges, their size and shape, and the 
+<!-- This file defines the possible Gauges, their size and shape, and the
 internal layout of their constitutent GaugeComponents. Edit this to define
 custom gauges built from standard GaugeComponents, or to change the default
 appearance of the standard gauges. -->
@@ -54,7 +54,7 @@ appearance of the standard gauges. -->
 		</Component>
 
 	</Gauge>
-
+<!-- 
 	<Gauge name="EngineInstruments">
 		<Size>195.0,80.0</Size>
 		<Scale>1.0,1.0</Scale>
@@ -123,7 +123,8 @@ appearance of the standard gauges. -->
 		</Component>
 
 	</Gauge>
-
+-->
+<!-- 
 	<Gauge name="NavDisplay">
 		<Size>181.0,262.0</Size>
 		<Scale>1.0,1.0</Scale>
@@ -133,5 +134,5 @@ appearance of the standard gauges. -->
 			<MapScale>45.0</MapScale> <!-- initial scale of the map in nautical miles -->
 		</Component>
 	</Gauge>
-
+-->
 </GaugeSpecification>

@@ -18,8 +18,8 @@ Note, this project is essentially a fork of the albatross project from gitorious
 with changes merged in from Hugo Vincent's Github fork; much author attribution
 has been put back in place.    
 
-The only files not under the modified BSD license are CoursePoint.cpp and 
-CoursePoint.h (in Source/Navigation) which are GPL v3.
+The only files not under the modified BSD license from the original project
+are CoursePoint.cpp and CoursePoint.h (in Source/Navigation) which are GPL v3.
 _______________________________________________________________________________
 
 	

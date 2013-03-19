@@ -1,0 +1,6 @@
+
+
+xcodebuild -project GlassCockpit.xcodeproj -alltargets -configuration Debug
+
+
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project GlassCockpit.xcodeproj -alltargets -configuration Debug

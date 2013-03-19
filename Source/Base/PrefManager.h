@@ -28,45 +28,44 @@ namespace OpenGC {
  * is the key. See preferences.xml to see or change the default preferences,
  * or default.xml (or your setup XML file) to change your specific preference
  * values. */
-class PrefManager
-{
-	public:
-		PrefManager();
-		~PrefManager();
+class PrefManager {
+    public:
+        PrefManager();
+        ~PrefManager();
 
-		/** Initialise the Preferences map from an XML file */
-		void InitPreferences(const char* xmlFileName);
+        /** Initialise the Preferences map from an XML file */
+        void InitPreferences(const char* xmlFileName);
 
-		/** Set several preferences from an XML file <Preferences> section */
-		void SetPrefsFromXML(XMLNode prefNode);
-			
-		/** Get pref value as a string, boolean, double or integer */
-		string GetPrefS(const string& prefKey);
-		bool GetPrefB(const string& prefKey);
-		double GetPrefD(const string& prefKey);
-		int GetPrefI(const string& prefKey);
+        /** Set several preferences from an XML file <Preferences> section */
+        void SetPrefsFromXML(XMLNode prefNode);
 
-		/** Set pref value as string, integer, boolean or double */
-		void SetPrefS(const string& prefKey, const string value);
-		void SetPrefI(const string& prefKey, const int value);
-		void SetPrefB(const string& prefKey, const bool value);
-		void SetPrefD(const string& prefKey, const double value);
+        /** Get pref value as a string, boolean, double or integer */
+        string GetPrefS(const string& prefKey);
+        bool GetPrefB(const string& prefKey);
+        double GetPrefD(const string& prefKey);
+        int GetPrefI(const string& prefKey);
 
-		/** Print all preferences for debugging */
-		void PrintAll() const;
+        /** Set pref value as string, integer, boolean or double */
+        void SetPrefS(const string& prefKey, const string value);
+        void SetPrefI(const string& prefKey, const int value);
+        void SetPrefB(const string& prefKey, const bool value);
+        void SetPrefD(const string& prefKey, const double value);
 
-	private:
-		/** The structure that configuration options are stored in. */
-		typedef struct {
-			string	asString;
-			double	asDouble;
-			bool	asBool;
-			int		asInt;
-			bool	isSet; // set to true when initialised
-			char	type;  // 'I'=int, 'B'=bool, 'D'=double, 'S'=string
-		} Preference;
+        /** Print all preferences for debugging */
+        void PrintAll() const;
 
-		std::map<string, Preference*> m_PrefMap;
+    private:
+        /** The structure that configuration options are stored in. */
+        typedef struct {
+            string  asString;
+            double  asDouble;
+            bool    asBool;
+            int     asInt;
+            bool    isSet; // set to true when initialised
+            char    type;  // 'I'=int, 'B'=bool, 'D'=double, 'S'=string
+        } Preference;
+
+        std::map<string, Preference*> m_PrefMap;
 };
 
 } // end namespace OpenGC

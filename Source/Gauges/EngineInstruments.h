@@ -24,24 +24,22 @@
 
 #include "Gauge.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class EngineInstruments : public Gauge
-{
-	public:
-		EngineInstruments();
-		virtual ~EngineInstruments();
+class EngineInstruments : public Gauge {
+    public:
+        EngineInstruments();
+        virtual ~EngineInstruments();
 
-		/** Overloaded render function */
-		void Render();
+        /** Overloaded render function */
+        void Render();
 
-	protected:
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
-		/** Calculates frames per second. */
-		double GetFPS();
+        /** Calculates frames per second. */
+        double GetFPS();
 };
 
 } // end namespace OpenGC

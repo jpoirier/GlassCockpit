@@ -26,49 +26,45 @@
 
 using namespace std;
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 /** This is the actual DataSource */
-class FGDataSource : public DataSource
-{
-	public:
+class FGDataSource : public DataSource {
+    public:
+        FGDataSource();
+        virtual ~FGDataSource();
 
-		FGDataSource();  
-		virtual ~FGDataSource();
+        // Open the network connection
+        bool Open();
 
-		// Open the network connection
-		bool Open();
+        // The "money" function
+        bool OnIdle();
 
-		// The "money" function
-		bool OnIdle(); 
+    protected:
+        // Get data from FlightGear
+        bool GetData();
 
-	protected:
+        // Flight model data received from FlightGear
+        FGData *m_FDM;
 
-		// Get data from FlightGear
-		bool GetData();
+        // The socket
+//      netSocket m_Socket;
 
-		// Flight model data received from FlightGear
-		FGData *m_FDM;
+        // The host and port we're receiving on
+        string m_Host;
+        int m_ReceivePort;
 
-		// The socket
-//		netSocket m_Socket;
+        // Are we connected to Flightgear?
+        bool m_ValidConnection;
 
-		// The host and port we're receiving on
-		string m_Host;
-		int m_ReceivePort;
+        // The message received from Flightgear
+        char *m_Buffer;
 
-		// Are we connected to Flightgear?
-		bool m_ValidConnection;
+        // A temporary buffer used in the receive process
+        char *m_TempMsg;
 
-		// The message received from Flightgear
-		char *m_Buffer;
-
-		// A temporary buffer used in the receive process
-		char *m_TempMsg;
-
-		// Maximum length of the buffer
-		int m_BufferLength;
+        // Maximum length of the buffer
+        int m_BufferLength;
 };
 
 } // end namespace OpenGC

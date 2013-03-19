@@ -20,17 +20,13 @@
 
 #include "DataSourceMacro.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class DataContainer
-{
-	public:
-
-		DataContainer();
-		virtual ~DataContainer();
-
-		void InitializeData();
+class DataContainer {
+    public:
+        DataContainer();
+        virtual ~DataContainer();
+        void InitializeData();
 };
 
 } // end namespace OpenGC

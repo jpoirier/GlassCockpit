@@ -24,33 +24,27 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class VSI : public GaugeComponent  
-{
-	public:
+class VSI : public GaugeComponent {
+    public:
+        VSI();
+        virtual ~VSI();
+        /** Overloaded render function */
+        void Render();
 
-		VSI();
-		virtual ~VSI();
+    protected:
+        /** Routine to convert an altitude to needle position */
+        double VSpeedToNeedle(double vspd);
 
-		/** Overloaded render function */
-		void Render();
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
-	protected:
+        /** Centered position of needle in physical coordinates */
+        double m_NeedleCenter;
 
-		/** Routine to convert an altitude to needle position */
-		double VSpeedToNeedle(double vspd);
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
-
-		/** Centered position of needle in physical coordinates */
-		double m_NeedleCenter;
-
-		/** Max positive or negative deflection of needle in physical coordinates */
-		double m_MaxNeedleDeflection;
-
+        /** Max positive or negative deflection of needle in physical coordinates */
+        double m_MaxNeedleDeflection;
 };
 
 } // end namespace OpenGC

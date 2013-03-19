@@ -24,23 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class ArtificialHorizon : public GaugeComponent  
-{
-	public:
+class ArtificialHorizon : public GaugeComponent {
+    public:
+        ArtificialHorizon();
+        virtual ~ArtificialHorizon();
 
-		ArtificialHorizon();
-		virtual ~ArtificialHorizon();
+        /** Overloaded render function */
+        void Render();
 
-		/** Overloaded render function */
-		void Render();
-
-	protected:
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 };
 
 } // end namespace OpenGC

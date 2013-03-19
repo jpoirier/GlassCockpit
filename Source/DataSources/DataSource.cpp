@@ -22,32 +22,27 @@
 namespace OpenGC
 {
 
-DataSource::DataSource()
-{
-	m_Airframe = new AirframeDataContainer;
+DataSource::DataSource() {
+    m_Airframe = new AirframeDataContainer;
 }
 
-DataSource::~DataSource()
-{
-	delete m_Airframe;
+DataSource::~DataSource() {
+    delete m_Airframe;
 }
 
 // Initialize the data
-void DataSource::InitializeData()
-{
-	m_Airframe->InitializeData();
+void DataSource::InitializeData() {
+    m_Airframe->InitializeData();
 }
 
-bool DataSource::OnIdle()
-{
-	// The default version does nothing
-	return false;
+bool DataSource::OnIdle() {
+    // The default version does nothing
+    return false;
 }
 
-bool DataSource::Open()
-{
-	// The default version returns false, which doesn't necessarily mean anything
-	return false;
+bool DataSource::Open() {
+    // The default version returns false, which doesn't necessarily mean anything
+    return false;
 }
 
 } // end namespace OpenGC

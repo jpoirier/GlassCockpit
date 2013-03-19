@@ -25,27 +25,25 @@
 #include <FL/Fl_Gl_Window.H>
 #include "RenderWindow.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class FLTKRenderWindow : public Fl_Gl_Window, public RenderWindow
-{
-	public:
+class FLTKRenderWindow : public Fl_Gl_Window, public RenderWindow {
+    public:
 
-		/** Constructor follows FLTK syntax */
-		FLTKRenderWindow(int X, int Y, int W, int H, const char *L = 0);
+        /** Constructor follows FLTK syntax */
+        FLTKRenderWindow(int X, int Y, int W, int H, const char *L = 0);
 
-		/** Yawn, a destructor */
-		~FLTKRenderWindow();
+        /** Yawn, a destructor */
+        ~FLTKRenderWindow();
 
-		/** FL rendering callback */
-		void draw();
+        /** FL rendering callback */
+        void draw();
 
-		/**  FL event handling callback */
-		int handle(int);
+        /**  FL event handling callback */
+        int handle(int);
 
-		/**  Render the entire window */
-		void Render();
+        /**  Render the entire window */
+        void Render();
 };
 
 } // end namespace OpenGC

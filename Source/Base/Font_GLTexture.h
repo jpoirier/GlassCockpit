@@ -24,7 +24,7 @@ class Font_FileStore;
 
 /** This is a minimal, lightweight reimplementation of FTTextureFont from
  *  the FTGL library, for use on OpenGL ES, e.g. on the iPhone. It only
- *  provides the functionality required by OpenGC. 
+ *  provides the functionality required by OpenGC.
  *
  *  We acheive this reduction in CPU and memory required by prerendering
  *  the font to a bitmap image on the development host, where we have access
@@ -32,21 +32,20 @@ class Font_FileStore;
  *
  *  Only 7-bit ASCII is supported, no unicode.
  */
-class Font_GLTexture
-{
+class Font_GLTexture {
 public:
-	Font_GLTexture(const char* filename);
-	~Font_GLTexture();
-	void FaceSize(float size);
-	void Render(const char* str);
-	float Advance(const char* str);
-	int Error();
+    Font_GLTexture(const char* filename);
+    ~Font_GLTexture();
+    void FaceSize(float size);
+    void Render(const char* str);
+    float Advance(const char* str);
+    int Error();
 
 private:
-	Font_FileStore *m_Store;
-	GLuint texName;
-	
-	void CheckOrCreateTexture();
+    Font_FileStore *m_Store;
+    GLuint texName;
+
+    void CheckOrCreateTexture();
 };
 
 #endif

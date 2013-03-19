@@ -20,22 +20,20 @@
 
 #include "DataSource.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-typedef enum {STATE_WAITING, STATE_CONNECTING, STATE_FD, STATE_RUNNING} TestState; 
+typedef enum {STATE_WAITING, STATE_CONNECTING, STATE_FD, STATE_RUNNING} TestState;
 
-class TestDataSource : public DataSource
-{
-	public:
-		TestDataSource();
-		~TestDataSource();
+class TestDataSource : public DataSource {
+    public:
+        TestDataSource();
+        ~TestDataSource();
 
-		// The money function
-		bool OnIdle();
+        // The money function
+        bool OnIdle();
 
-	private:
-		TestState m_State;
+    private:
+        TestState m_State;
 };
 
 } // end namespace OpenGC

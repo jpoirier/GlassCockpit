@@ -24,21 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class AlbatrossAnnunciator : public GaugeComponent  
-{
-	public:
-		AlbatrossAnnunciator();
-		virtual ~AlbatrossAnnunciator();
+class AlbatrossAnnunciator : public GaugeComponent {
+    public:
+        AlbatrossAnnunciator();
+        virtual ~AlbatrossAnnunciator();
 
-		/** Overloaded render function */
-		void Render();
+        /** Overloaded render function */
+        void Render();
 
-	protected:
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 };
 
 } // end namespace OpenGC

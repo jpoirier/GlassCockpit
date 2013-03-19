@@ -24,21 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class PFDOverlay : public GaugeComponent  
-{
-	public:
-		PFDOverlay();
-		virtual ~PFDOverlay();
+class PFDOverlay : public GaugeComponent {
+    public:
+        PFDOverlay();
+        virtual ~PFDOverlay();
 
-		/** Overloaded render function */
-		void Render();
+        /** Overloaded render function */
+        void Render();
 
-	protected:
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 };
 
 } // end namespace OpenGC

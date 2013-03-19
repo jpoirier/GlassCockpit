@@ -23,14 +23,13 @@
 
 namespace OpenGC {
 
-class CalcManager
-{
+class CalcManager {
 public:
-	CalcManager();
-	~CalcManager();
-	
-	void InitFromXMLNode(XMLNode calcNode);
-	bool Calculate();
+    CalcManager();
+    ~CalcManager();
+
+    void InitFromXMLNode(XMLNode calcNode);
+    bool Calculate();
 };
 
 } // end namespace OpenGC

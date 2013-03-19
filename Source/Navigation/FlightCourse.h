@@ -21,14 +21,12 @@
 #include <vector>
 #include "CoursePoint.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class FlightCourse : public std::vector<CoursePoint>
-{
+class FlightCourse : public std::vector<CoursePoint> {
 public:
-	FlightCourse();
-	~FlightCourse();
+    FlightCourse();
+    ~FlightCourse();
 };
 
 } // end namespace OpenGC

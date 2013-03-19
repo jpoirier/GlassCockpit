@@ -16,7 +16,7 @@
 =========================================================================*/
 
 /**
- * Sound manager class - used for playing warning sounds. 
+ * Sound manager class - used for playing warning sounds.
  * May add text-to-speech annunciations in the future.
  */
 
@@ -26,18 +26,17 @@
 namespace OpenGC {
 
 typedef enum {
-	SND_WARNING,
-	SND_ALERT
+    SND_WARNING,
+    SND_ALERT
 } sound_t;
-	
-class SoundManager
-{
-	public:
 
-		SoundManager();
-		~SoundManager();
+class SoundManager {
+    public:
 
-		void PlaySound(sound_t snd);
+        SoundManager();
+        ~SoundManager();
+
+        void PlaySound(sound_t snd);
 };
 
 

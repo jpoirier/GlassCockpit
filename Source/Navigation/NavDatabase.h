@@ -30,49 +30,46 @@
 #include "FlightCourse.h"
 #include "GeographicHash.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class NavDatabase  
-{
-	public:
+class NavDatabase {
+    public:
+        NavDatabase();
+        virtual ~NavDatabase();
 
-		NavDatabase();
-		virtual ~NavDatabase();
+        /** Load the nav data */
+        void InitDatabase();
 
-		/** Load the nav data */
-		void InitDatabase();
+        /** Get the hashed navaid list */
+        GeographicHash* GetNavaidHash() {return m_NavaidHash;}
 
-		/** Get the hashed navaid list */
-		GeographicHash* GetNavaidHash() {return m_NavaidHash;}
+        /** Get the hashed airport list */
+        GeographicHash* GetAirportHash() {return m_AirportHash;}
 
-		/** Get the hashed airport list */
-		GeographicHash* GetAirportHash() {return m_AirportHash;}
+        /** Get the waypoint list */
+        WaypointList* GetWaypointList() {return m_WaypointList;}
 
-		/** Get the waypoint list */
-		WaypointList* GetWaypointList() {return m_WaypointList;}
+        /** Get the flight path */
+        FlightCourse* GetFlightCourse() {return m_FlightCourse;}
 
-		/** Get the flight path */
-		FlightCourse* GetFlightCourse() {return m_FlightCourse;}
+    private:
+        /** The flight path/course */
+        FlightCourse *m_FlightCourse;
 
-	private:
-		/** The flight path/course */
-		FlightCourse *m_FlightCourse;
-		
-		/** A list of all waypoints */
-		WaypointList *m_WaypointList;
+        /** A list of all waypoints */
+        WaypointList *m_WaypointList;
 
-		/** Airport list */
-		AirportList *m_AirportList;
+        /** Airport list */
+        AirportList *m_AirportList;
 
-		/** Airport list hashed by lat/lon */
-		GeographicHash *m_AirportHash;
+        /** Airport list hashed by lat/lon */
+        GeographicHash *m_AirportHash;
 
-		/** Navaid list */
-		NavaidList *m_NavaidList;
-		
-		/** Navaid list hashed by lat/lon */
-		GeographicHash *m_NavaidHash;
+        /** Navaid list */
+        NavaidList *m_NavaidList;
+
+        /** Navaid list hashed by lat/lon */
+        GeographicHash *m_NavaidHash;
 };
 
 } // end namespace OpenGC

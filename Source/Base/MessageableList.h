@@ -27,20 +27,19 @@ namespace OpenGC {
 class Messageable;
 
 /** A list of messageable objects in OpenGC */
-class MessageableList : std::list<Messageable*>
-{
+class MessageableList : std::list<Messageable*> {
 public:
-	MessageableList();
-	~MessageableList();
+    MessageableList();
+    ~MessageableList();
 
-	/** Add an object to the MessageableList */
-	void Add(Messageable *obj);
-	
-	/** Remove an object from the MessageableList */
-	void Remove(Messageable *obj);
-	
-	/** Send a message to all Messageable objects */
-	void DispatchMessage(Message message, void *data);
+    /** Add an object to the MessageableList */
+    void Add(Messageable *obj);
+
+    /** Remove an object from the MessageableList */
+    void Remove(Messageable *obj);
+
+    /** Send a message to all Messageable objects */
+    void DispatchMessage(Message message, void *data);
 };
 
 } // end namespace OpenGC

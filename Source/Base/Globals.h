@@ -28,19 +28,18 @@
 
 namespace OpenGC {
 
-class Globals 
-{
+class Globals {
 public:
-	Globals();
-	~Globals();
+    Globals();
+    ~Globals();
 
-	DataSource			*m_DataSource;
-	NavDatabase			*m_NavDatabase;
-	PrefManager			*m_PrefManager;
-	FontManager			*m_FontManager;
-	RasterMapManager	*m_RasterMapManager;
-	CircleEvaluator		*m_CircleEvaluator;
-	MessageableList		*m_MessageableList;
+    DataSource          *m_DataSource;
+    NavDatabase         *m_NavDatabase;
+    PrefManager         *m_PrefManager;
+    FontManager         *m_FontManager;
+    RasterMapManager    *m_RasterMapManager;
+    CircleEvaluator     *m_CircleEvaluator;
+    MessageableList     *m_MessageableList;
 };
 
 extern Globals *globals;

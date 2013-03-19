@@ -9,11 +9,11 @@ preferences. -->
 <!-- PREFERENCES -->
 	<Preferences>
 <!--	<Zoom>0.96</Zoom> -->			<!-- for laptop builtin screen, window 1081x752 -->
-		<Zoom>1.02</Zoom>				<!-- for laptop builtin screen, fullscreen -->
+<!--		<Zoom>1.02</Zoom> -->					<!-- for laptop builtin screen, fullscreen -->
 <!--	<Zoom>1.3344</Zoom>	-->			<!-- for 1680x1050 fullscreen -->
-<!--	<Zoom>0.6672</Zoom>	-->			<!-- for devel, window 751x523 -->
+	<Zoom>0.6672</Zoom>			<!-- for devel, window 751x523 -->
 <!--	<Zoom>1.2</Zoom> -->			<!-- 1351x941 -->
-		<FullScreen>true</FullScreen>
+		<FullScreen>false</FullScreen>
 		<AppUpdateRate>0.04</AppUpdateRate> <!-- 0 means lock to vertical sync, 25 Hz is 0.04 -->
 	</Preferences>
 
@@ -32,14 +32,14 @@ preferences. -->
 
 		<Geometry>
 			<Position>0,0</Position>
-			<Size>1127,785</Size>
+			<Size>400,400</Size>
 		</Geometry>
 
 		<Gauge type="PFD">
 			<Position>-4.0,58.0</Position>
 			<Scale>1.0,1.0</Scale>
 		</Gauge>
-
+<!-- 
 		<Gauge type="NavDisplay">
 			<Position>146.0,0.0</Position>
 			<Scale>1.0,1.0</Scale>
@@ -49,6 +49,7 @@ preferences. -->
 			<Position>0.0,0.0</Position>
 			<Scale>1.0,1.0</Scale>
 		</Gauge>
+-->
 	</Window>
 
 </OpenGC>

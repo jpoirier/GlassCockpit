@@ -27,60 +27,55 @@
 
 #include "GLHeaders.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class CircleEvaluator  
-{
+class CircleEvaluator {
+    public:
+        CircleEvaluator();
+        virtual ~CircleEvaluator();
 
-	public:
+        /** Sets the radius of the circle in physical units */
+        void SetRadius(double radius);
 
-		CircleEvaluator();
-		virtual ~CircleEvaluator();
+        /** Defines the "coarseness" of the circle (degree spacing of GL_POINTS) */
+        void SetDegreesPerPoint(double degreesPerPoint);
 
-		/** Sets the radius of the circle in physical units */
-		void SetRadius(double radius);
+        /** Defines the start and end of the arc in degrees */
+        void SetArcStartEnd(double startArc, double endArc);
 
-		/** Defines the "coarseness" of the circle (degree spacing of GL_POINTS) */
-		void SetDegreesPerPoint(double degreesPerPoint);
+        /** Defines the center of the circle in physical units */
+        void SetOrigin(double x, double y);
 
-		/** Defines the start and end of the arc in degrees */
-		void SetArcStartEnd(double startArc, double endArc);
+        /** Add specified vertex to vertex array at the current position */
+        void AddVertex(float x, float y);
 
-		/** Defines the center of the circle in physical units */
-		void SetOrigin(double x, double y);
+        /** Evaluate the circle, generating points into vertex cache */
+        void Evaluate();
 
-		/** Add specified vertex to vertex array at the current position */
-		void AddVertex(float x, float y);
+        /** Renders vertex cache in specified mode */
+        void Render(GLenum mode);
 
-		/** Evaluate the circle, generating points into vertex cache */
-		void Evaluate();
+        /** Clears vertex cache */
+        void ResetVertices();
 
-		/** Renders vertex cache in specified mode */
-		void Render(GLenum mode);
+    protected:
+        /** The origin (center) of the circle */
+        double m_XOrigin, m_YOrigin;
 
-		/** Clears vertex cache */
-		void ResetVertices();
+        /** The radius of the arc/circle */
+        double m_Radius;
 
-	protected:
+        /** The start and end of the arc in degrees */
+        double m_StartArcDegrees, m_EndArcDegrees;
 
-		/** The origin (center) of the circle */
-		double m_XOrigin, m_YOrigin;
+        /** How many degrees to move before generating a new point */
+        double m_DegreesPerPoint;
 
-		/** The radius of the arc/circle */
-		double m_Radius;
+        /** Used to hold GL generated vertices */
+        float *m_Vertices;
 
-		/** The start and end of the arc in degrees */
-		double m_StartArcDegrees, m_EndArcDegrees;
-
-		/** How many degrees to move before generating a new point */
-		double m_DegreesPerPoint;
-
-		/** Used to hold GL generated vertices */
-		float *m_Vertices;
-
-		/** Current index into vertex array */
-		unsigned int m_VertexIdx;
+        /** Current index into vertex array */
+        unsigned int m_VertexIdx;
 };
 
 } // end namespace OpenGC

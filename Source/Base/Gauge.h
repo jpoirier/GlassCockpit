@@ -44,56 +44,55 @@
 namespace OpenGC
 {
 
-class Gauge: public RenderObject
-{
-	public:
-		Gauge();
-		virtual ~Gauge();
+class Gauge: public RenderObject {
+    public:
+        Gauge();
+        virtual ~Gauge();
 
-		/** Overloaded render method */
-		void Render();
+        /** Overloaded render method */
+        void Render();
 
-		/** Set up using XML options. Pass it the <Gauge> node. */
-		void InitFromXMLNode(XMLNode gaugeNode);
-		
-		/** Add a gauge component */
-		void AddGaugeComponent(GaugeComponent* pComponent);
+        /** Set up using XML options. Pass it the <Gauge> node. */
+        void InitFromXMLNode(XMLNode gaugeNode);
 
-		/** Overloaded method for setting the monitor calibration */
-		void SetUnitsPerPixel(double unitsPerPixel);
+        /** Add a gauge component */
+        void AddGaugeComponent(GaugeComponent* pComponent);
 
-		/** Set the x and y scale of the gauge (and member components) */
-		void SetScale(double xScale, double yScale);
+        /** Overloaded method for setting the monitor calibration */
+        void SetUnitsPerPixel(double unitsPerPixel);
 
-		/** Recalculates placement of the gauge in the window */
-		void RecalcWindowPlacement();
+        /** Set the x and y scale of the gauge (and member components) */
+        void SetScale(double xScale, double yScale);
 
-		/** Resets the gauge coordinate system before and after rendering components */
-		void ResetGaugeCoordinateSystem();
+        /** Recalculates placement of the gauge in the window */
+        void RecalcWindowPlacement();
 
-		/** Return true if the click is inside the gauge
-		  If true, tests gauge components prior to returning */
-		bool ClickTest(int button, int state, int x, int y);
+        /** Resets the gauge coordinate system before and after rendering components */
+        void ResetGaugeCoordinateSystem();
 
-		/** Determine whether or not to draw the gauge outline */
-		void SetGaugeOutline(bool outline) { m_DrawGaugeOutline = outline; }
+        /** Return true if the click is inside the gauge
+          If true, tests gauge components prior to returning */
+        bool ClickTest(int button, int state, int x, int y);
 
-	protected:
+        /** Determine whether or not to draw the gauge outline */
+        void SetGaugeOutline(bool outline) { m_DrawGaugeOutline = outline; }
 
-		/** Overload to set Gauge-specific options */
-		virtual void CustomXMLInit(XMLNode node) {}
+    protected:
 
-		/** Draw the gauge outline */
-		void DrawGaugeOutline();
+        /** Overload to set Gauge-specific options */
+        virtual void CustomXMLInit(XMLNode node) {}
 
-		/** All of the guage components */
-		std::list<GaugeComponent*> m_GaugeComponentList;
+        /** Draw the gauge outline */
+        void DrawGaugeOutline();
 
-		/** The number of gauge components in this gauge */
-		int m_NumGaugeComponents;
+        /** All of the guage components */
+        std::list<GaugeComponent*> m_GaugeComponentList;
 
-		/** Whether or not to draw a blue line around the gauge */
-		bool m_DrawGaugeOutline;
+        /** The number of gauge components in this gauge */
+        int m_NumGaugeComponents;
+
+        /** Whether or not to draw a blue line around the gauge */
+        bool m_DrawGaugeOutline;
 };
 
 } // end namespace OpenGC

@@ -22,18 +22,15 @@
 #include <string>
 #include "GeographicObjectList.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class NavaidList : public GeographicObjectList
-{
-	public:
+class NavaidList : public GeographicObjectList {
+    public:
+        NavaidList();
+        virtual ~NavaidList();
 
-		NavaidList();
-		virtual ~NavaidList();
-
-		/** Read a file contain navaids, returns true if successful, else false */
-		bool LoadData(const string& fileName);
+        /** Read a file contain navaids, returns true if successful, else false */
+        bool LoadData(const string& fileName);
 };
 
 } // end namespace OpenGC

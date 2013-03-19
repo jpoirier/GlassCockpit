@@ -24,23 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class SpeedTicker : public GaugeComponent  
-{
-	public:
+class SpeedTicker : public GaugeComponent {
+    public:
+        SpeedTicker();
+        virtual ~SpeedTicker();
 
-		SpeedTicker();
-		virtual ~SpeedTicker();
+        /** Overloaded render function */
+        void Render();
 
-		/** Overloaded render function */
-		void Render();
-
-	protected:
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
 };
 

@@ -24,23 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class AltitudeTicker : public GaugeComponent  
-{
-	public:
+class AltitudeTicker : public GaugeComponent {
+    public:
+        AltitudeTicker();
+        virtual ~AltitudeTicker();
 
-		AltitudeTicker();
-		virtual ~AltitudeTicker();
+        /** Overloaded render function */
+        void Render();
 
-		/** Overloaded render function */
-		void Render();
-
-	protected:
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 };
 
 } // end namespace OpenGC

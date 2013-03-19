@@ -20,17 +20,15 @@
 
 /** Macro for data members which allow non-source write operations */
 #define DataMacro(name,type) \
-	public: \
-		type Get##name() \
-		{ \
-			return m_##name; \
-		} \
-		void Set##name(type value) \
-		{ \
-			m_##name = value; \
-		} \
-	protected: \
-		type m_##name;
+    public: \
+        type Get##name() { \
+            return m_##name; \
+        } \
+        void Set##name(type value) { \
+            m_##name = value; \
+        } \
+    protected: \
+        type m_##name;
 
 #endif
 

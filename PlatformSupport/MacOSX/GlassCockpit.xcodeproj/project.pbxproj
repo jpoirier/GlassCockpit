@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		5CBC632316234D6300147A71 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC632116234D6300147A71 /* server.cpp */; };
+		5CBC632516234EAC00147A71 /* libptypes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBC632416234EAC00147A71 /* libptypes.a */; };
+		5CBC633116234FBF00147A71 /* APM2DataSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC632F16234FBF00147A71 /* APM2DataSource.cpp */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -99,6 +102,19 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* GlassCockpit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlassCockpit_Prefix.pch; sourceTree = "<group>"; };
+		5CBC632116234D6300147A71 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = server.cpp; path = ../../Source/Server/server.cpp; sourceTree = "<group>"; };
+		5CBC632216234D6300147A71 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = ../../Source/Server/server.h; sourceTree = "<group>"; };
+		5CBC632416234EAC00147A71 /* libptypes.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libptypes.a; path = ptypes/libptypes.a; sourceTree = "<group>"; };
+		5CBC632716234F3D00147A71 /* pasync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pasync.h; path = ../../Source/ptypes/pasync.h; sourceTree = "<group>"; };
+		5CBC632816234F3D00147A71 /* pinet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinet.h; path = ../../Source/ptypes/pinet.h; sourceTree = "<group>"; };
+		5CBC632916234F3D00147A71 /* pport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pport.h; path = ../../Source/ptypes/pport.h; sourceTree = "<group>"; };
+		5CBC632A16234F3D00147A71 /* pstreams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pstreams.h; path = ../../Source/ptypes/pstreams.h; sourceTree = "<group>"; };
+		5CBC632B16234F3D00147A71 /* pstringx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pstringx.h; path = ../../Source/ptypes/pstringx.h; sourceTree = "<group>"; };
+		5CBC632C16234F3D00147A71 /* ptime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ptime.h; path = ../../Source/ptypes/ptime.h; sourceTree = "<group>"; };
+		5CBC632D16234F3D00147A71 /* ptypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ptypes.h; path = ../../Source/ptypes/ptypes.h; sourceTree = "<group>"; };
+		5CBC632E16234F3D00147A71 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = ../../Source/ptypes/server.h; sourceTree = "<group>"; };
+		5CBC632F16234FBF00147A71 /* APM2DataSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = APM2DataSource.cpp; path = ../../Source/DataSources/APM2DataSource.cpp; sourceTree = "<group>"; };
+		5CBC633016234FBF00147A71 /* APM2DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APM2DataSource.h; path = ../../Source/DataSources/APM2DataSource.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* GlassCockpit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassCockpit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A03B1850F4006F00070A595 /* Font_FileStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font_FileStore.h; path = ../../Source/Base/Font_FileStore.h; sourceTree = "<group>"; };
@@ -253,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CBC632516234EAC00147A71 /* libptypes.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				9AE411C00F39973C00D539E5 /* OpenGL.framework in Frameworks */,
 				9AAE1D3B0F3AF15000B9CFFA /* libxml2.dylib in Frameworks */,
@@ -314,6 +331,7 @@
 		29B97314FDCFA39411CA2CEA /* GlassCockpit */ = {
 			isa = PBXGroup;
 			children = (
+				5CBC632416234EAC00147A71 /* libptypes.a */,
 				9A5CE0400F4A7C2A00796599 /* TODO */,
 				9A6E6D6211EB405900E42279 /* README */,
 				9AAE1D3D0F3AF17300B9CFFA /* Portable OpenGC */,
@@ -356,6 +374,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5CBC632016234D5100147A71 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				5CBC632116234D6300147A71 /* server.cpp */,
+				5CBC632216234D6300147A71 /* server.h */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		5CBC632616234F0A00147A71 /* ptypes */ = {
+			isa = PBXGroup;
+			children = (
+				5CBC632716234F3D00147A71 /* pasync.h */,
+				5CBC632816234F3D00147A71 /* pinet.h */,
+				5CBC632916234F3D00147A71 /* pport.h */,
+				5CBC632A16234F3D00147A71 /* pstreams.h */,
+				5CBC632B16234F3D00147A71 /* pstringx.h */,
+				5CBC632C16234F3D00147A71 /* ptime.h */,
+				5CBC632D16234F3D00147A71 /* ptypes.h */,
+				5CBC632E16234F3D00147A71 /* server.h */,
+			);
+			name = ptypes;
+			sourceTree = "<group>";
+		};
 		9A06B17F0F4E87160003733D /* ShapeLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +438,8 @@
 		9AAE1D3D0F3AF17300B9CFFA /* Portable OpenGC */ = {
 			isa = PBXGroup;
 			children = (
+				5CBC632616234F0A00147A71 /* ptypes */,
+				5CBC632016234D5100147A71 /* Server */,
 				9AAE1F690F3BA84600B9CFFA /* Gauges */,
 				9AAE1DF40F3AF59F00B9CFFA /* Base */,
 				9AAE1DF30F3AF58C00B9CFFA /* Data Sources */,
@@ -407,6 +451,8 @@
 		9AAE1DF30F3AF58C00B9CFFA /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5CBC632F16234FBF00147A71 /* APM2DataSource.cpp */,
+				5CBC633016234FBF00147A71 /* APM2DataSource.h */,
 				9AAE1DD50F3AF32D00B9CFFA /* AirframeDataContainer.h */,
 				9AAE1DD40F3AF32D00B9CFFA /* AirframeDataContainer.cpp */,
 				9AAE1DFE0F3AF5B500B9CFFA /* AlbatrossDataSource.h */,
@@ -704,6 +750,8 @@
 				9A62EF420F52A72B00030A68 /* jidctflt.c in Sources */,
 				9A62EF430F52A72B00030A68 /* tinyjpeg.c in Sources */,
 				9AC873BB0F53E37000294CAD /* lodepng.cpp in Sources */,
+				5CBC632316234D6300147A71 /* server.cpp in Sources */,
+				5CBC633116234FBF00147A71 /* APM2DataSource.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +854,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					/usr/X11/lib,
+					"\"$(SRCROOT)/ptypes\"",
 				);
 				PRODUCT_NAME = GlassCockpit;
 				SDKROOT = macosx10.7;
@@ -834,6 +883,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					/usr/X11/lib,
+					"\"$(SRCROOT)/ptypes\"",
 				);
 				PRODUCT_NAME = GlassCockpit;
 				SDKROOT = macosx10.7;
@@ -843,7 +893,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_AUTO_VECTORIZATION = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -861,7 +911,7 @@
 				);
 				LLVM_LTO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};

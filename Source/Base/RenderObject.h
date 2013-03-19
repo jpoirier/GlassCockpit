@@ -28,70 +28,68 @@
 #include "GLHeaders.h"
 #include "DataSource.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class RenderObject
-{
-	public:
+class RenderObject {
+    public:
 
-		RenderObject();
-		virtual ~RenderObject();
-		
-		/** Set the monitor calibration */
-		void SetUnitsPerPixel(double unitsPerPixel);
+        RenderObject();
+        virtual ~RenderObject();
 
-		/** All child classes must have a Render() method */
-		virtual void Render() = 0;
+        /** Set the monitor calibration */
+        void SetUnitsPerPixel(double unitsPerPixel);
 
-		/** Set the scale of the gauge */
-		void SetScale(double xScale, double yScale);
+        /** All child classes must have a Render() method */
+        virtual void Render() = 0;
 
-		/** Set the position of the gauge in the render window in physical units */
-		void SetPosition(double xPos, double yPos);
+        /** Set the scale of the gauge */
+        void SetScale(double xScale, double yScale);
 
-		/** Get the physical position */
-		OrderedPair<double> GetPhysicalPosition() { return m_PhysicalPosition; }
+        /** Set the position of the gauge in the render window in physical units */
+        void SetPosition(double xPos, double yPos);
 
-		/** Set the parent render object (in order to cascade transformations) */
-		void SetParentRenderObject(RenderObject* pObject) { m_pParentRenderObject = pObject; }
+        /** Get the physical position */
+        OrderedPair<double> GetPhysicalPosition() { return m_PhysicalPosition; }
 
-		/** Called by framework when a mouse click occurs (x/y in pixel coordinates) */
-		void HandleMouseButton(int button, int state, int x, int y);
+        /** Set the parent render object (in order to cascade transformations) */
+        void SetParentRenderObject(RenderObject* pObject) { m_pParentRenderObject = pObject; }
 
-		/** Returns true if the click applies to this object (x/y in pixel coordiantes) */
-		virtual bool ClickTest(int button, int state, int x, int y) = 0;
+        /** Called by framework when a mouse click occurs (x/y in pixel coordinates) */
+        void HandleMouseButton(int button, int state, int x, int y);
 
-		/** Called when a mouse "down" event occurs (x/y in physical coordinates) */
-		virtual void OnMouseDown(int button, double physicalX, double physicalY);
+        /** Returns true if the click applies to this object (x/y in pixel coordiantes) */
+        virtual bool ClickTest(int button, int state, int x, int y) = 0;
 
-		/** Called when a mouse "up" event occurs (x/y in physical coordinates) */
-		virtual void OnMouseUp(int button, double physicalX, double physicalY);
-		
-		/** Called when a key is pressed on the keyboard and OpenGC has focus */
-		virtual void OnKeyboard(int keycode, int modifiers);
+        /** Called when a mouse "down" event occurs (x/y in physical coordinates) */
+        virtual void OnMouseDown(int button, double physicalX, double physicalY);
 
-	protected:
-		/** Set by the render window to describe pixel-realspace conversions */
-		double m_UnitsPerPixel;
+        /** Called when a mouse "up" event occurs (x/y in physical coordinates) */
+        virtual void OnMouseUp(int button, double physicalX, double physicalY);
 
-		/** Parent object, for cascading position information */
-		RenderObject* m_pParentRenderObject;
+        /** Called when a key is pressed on the keyboard and OpenGC has focus */
+        virtual void OnKeyboard(int keycode, int modifiers);
 
-		/** 1.0=normal scale, 0.5=half, 2=double, etc. */
-		OrderedPair<double> m_Scale;
+    protected:
+        /** Set by the render window to describe pixel-realspace conversions */
+        double m_UnitsPerPixel;
 
-		/** Position in mm in the render window */
-		OrderedPair<double> m_PhysicalPosition;
+        /** Parent object, for cascading position information */
+        RenderObject* m_pParentRenderObject;
 
-		/** Placement in render window in pixel units */
-		OrderedPair<unsigned int> m_PixelPosition;
+        /** 1.0=normal scale, 0.5=half, 2=double, etc. */
+        OrderedPair<double> m_Scale;
 
-		/** Size in mm, defined by derived classes, NOT initialized */
-		OrderedPair<double> m_PhysicalSize;
+        /** Position in mm in the render window */
+        OrderedPair<double> m_PhysicalPosition;
 
-		/** Size in render window in pixel units */
-		OrderedPair<unsigned int> m_PixelSize;
+        /** Placement in render window in pixel units */
+        OrderedPair<unsigned int> m_PixelPosition;
+
+        /** Size in mm, defined by derived classes, NOT initialized */
+        OrderedPair<double> m_PhysicalSize;
+
+        /** Size in render window in pixel units */
+        OrderedPair<unsigned int> m_PixelSize;
 };
 
 } // end namespace OpenGC

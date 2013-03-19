@@ -17,18 +17,14 @@
 
 #include "NavaidGeoObj.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-NavaidGeoObj::NavaidGeoObj()
-{
-  m_Frequency = 0.0;
-  m_NavaidType = 0;
+NavaidGeoObj::NavaidGeoObj() {
+    m_Frequency = 0.0;
+    m_NavaidType = 0;
 }
 
-NavaidGeoObj::~NavaidGeoObj()
-{
-
+NavaidGeoObj::~NavaidGeoObj() {
 }
 
 } // end namespace OpenGC

@@ -24,24 +24,21 @@
 #ifndef OrderedPair_h
 #define OrderedPair_h
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 template<typename TDataType>
-class OrderedPair
-{
+class OrderedPair {
 
-	public:
+    public:
+        OrderedPair() {x=0; y=0;}
+        OrderedPair(char *init);
+        ~OrderedPair() {};
 
-		OrderedPair() {x=0; y=0;}
-		OrderedPair(char *init);
-		~OrderedPair() {};
+        /** X coordinate */
+        TDataType x;
 
-		/** X coordinate */
-		TDataType x;
-
-		/** Y coordinate */
-		TDataType y;
+        /** Y coordinate */
+        TDataType y;
 };
 
 } // end namespace OpenGC

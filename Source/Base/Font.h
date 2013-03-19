@@ -40,45 +40,43 @@
 #include <FTGL/ftgl.h>
 #endif
 
-namespace OpenGC
-{
-	
+namespace OpenGC {
+
 using namespace std;
 
-class Font
-{
-	public:
-		Font();
-		~Font();
+class Font {
+    public:
+        Font();
+        ~Font();
 
-		/** Load a font from a specified file */
-		bool LoadFont(const string& name);
+        /** Load a font from a specified file */
+        bool LoadFont(const string& name);
 
-		/** Print a character string at location (x,y) */
-		void Print(double x, double y, const char *string);
+        /** Print a character string at location (x,y) */
+        void Print(double x, double y, const char *string);
 
-		/** Set the size of the font (width and height) in physical units */
-		void SetSize(double x, double y);
+        /** Set the size of the font (width and height) in physical units */
+        void SetSize(double x, double y);
 
-		/** Sets the font to render to the left of the provided coordinates */
-		void SetRightAligned(bool rightAligned) {m_RightAligned = rightAligned; }
+        /** Sets the font to render to the left of the provided coordinates */
+        void SetRightAligned(bool rightAligned) {m_RightAligned = rightAligned; }
 
-		/** Get the font name */
-		string& GetName() { return m_Name; }
+        /** Get the font name */
+        string& GetName() { return m_Name; }
 
-	protected:
+    protected:
 
-		/** The name of the font */
-		string m_Name;
-		
-		/** Whether to render right-aligned or not */
-		bool m_RightAligned;
+        /** The name of the font */
+        string m_Name;
 
-		/** The size of the font in physical units */
-		OrderedPair<double> m_Size;
+        /** Whether to render right-aligned or not */
+        bool m_RightAligned;
 
-		/** The font object in GL texture mapped mode */
-		FTTextureFont* m_TextureFont;
+        /** The size of the font in physical units */
+        OrderedPair<double> m_Size;
+
+        /** The font object in GL texture mapped mode */
+        FTTextureFont* m_TextureFont;
 };
 
 } // end namespace OpenGC

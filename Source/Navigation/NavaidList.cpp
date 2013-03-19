@@ -25,57 +25,48 @@
 #include "BinaryNavData.h"
 #include "Debug.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 using namespace std;
 
-NavaidList::NavaidList()
-{
-
+NavaidList::NavaidList() {
 }
 
-NavaidList::~NavaidList()
-{
-
+NavaidList::~NavaidList() {
 }
 
-bool NavaidList::LoadData(const string& fileName)
-{
-	ifstream file(fileName.c_str(), ios::binary);
-	Assert(file.is_open(), "can't read navaid database");
+bool NavaidList::LoadData(const string& fileName) {
+    ifstream file(fileName.c_str(), ios::binary);
+    Assert(file.is_open(), "can't read navaid database");
 
-	// The struct that is read in for each navaid
-	BinaryNavData::NavaidData *nav = new BinaryNavData::NavaidData;
+    // The struct that is read in for each navaid
+    BinaryNavData::NavaidData *nav = new BinaryNavData::NavaidData;
 
-	// Now iterate over the structs in the file
-	while (file.eof() != 1)
-	{
-		file.read((char*)nav, sizeof(BinaryNavData::NavaidData));
+    // Now iterate over the structs in the file
+    while (file.eof() != 1) {
+        file.read((char*)nav, sizeof(BinaryNavData::NavaidData));
 
-		// Ensure ID string is null terminated
-		if (nav->id_length >= MAX_NAV_ID_LENGTH)
-		{
-			nav->id[MAX_NAV_ID_LENGTH] = 0;
-		}
-		else
-		{
-			nav->id[nav->id_length] = 0;
-		}
-		
-		// Create the NavaidGeoObj and fill out it's fields
-		NavaidGeoObj* pNavaid = new NavaidGeoObj();
-		pNavaid->SetAltitudeMeters(nav->elev);
-		pNavaid->SetIdentification(nav->id);
-		pNavaid->SetDegreeLat(nav->lat);
-		pNavaid->SetDegreeLon(nav->lon);
-		// FIXME other info
+        // Ensure ID string is null terminated
+        if (nav->id_length >= MAX_NAV_ID_LENGTH) {
+// XXX: was indexing past end of array
+            nav->id[MAX_NAV_ID_LENGTH-1] = 0;
+        } else {
+            nav->id[nav->id_length] = 0;
+        }
 
-		// Now add the navaid to the list
-		this->push_back(pNavaid);
-	}
-	delete nav;
-	return true;
+        // Create the NavaidGeoObj and fill out it's fields
+        NavaidGeoObj* pNavaid = new NavaidGeoObj();
+        pNavaid->SetAltitudeMeters(nav->elev);
+        pNavaid->SetIdentification(nav->id);
+        pNavaid->SetDegreeLat(nav->lat);
+        pNavaid->SetDegreeLon(nav->lon);
+        // FIXME other info
+
+        // Now add the navaid to the list
+        this->push_back(pNavaid);
+    }
+    delete nav;
+    return true;
 }
 
 } // end namespace OpenGC

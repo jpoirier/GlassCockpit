@@ -5,7 +5,7 @@
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * - Redistributions of source code must retain the above copyright notice,
  *  this list of conditions and the following disclaimer.
  *
@@ -16,7 +16,7 @@
  * - Neither the name of the author nor the names of its contributors may be
  *  used to endorse or promote products derived from this software without
  *  specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -53,9 +53,9 @@ enum std_markers {
    APP0 = 0xE0,
 };
 
-#define cY	0
-#define cCb	1
-#define cCr	2
+#define cY  0
+#define cCb 1
+#define cCr 2
 
 #define BLACK_Y 0
 #define BLACK_U 127
@@ -76,79 +76,70 @@ enum std_markers {
 
 
 #if 0
-static char *print_bits(unsigned int value, char *bitstr)
-{
-  int i, j;
-  i=31;
-  while (i>0)
-   {
-     if (value & (1UL<<i))
-       break;
-     i--;
-   }
-  j=0;
-  while (i>=0)
-   {
-     bitstr[j++] = (value & (1UL<<i))?'1':'0';
-     i--;
-   }
-  bitstr[j] = 0;
-  return bitstr;
+static char *print_bits(unsigned int value, char *bitstr) {
+    int i, j;
+    i=31;
+    while (i>0) {
+        if (value & (1UL<<i))
+            break;
+        i--;
+    }
+    j=0;
+    while (i>=0) {
+        bitstr[j++] = (value & (1UL<<i))?'1':'0';
+        i--;
+    }
+    bitstr[j] = 0;
+    return bitstr;
 }
 
-static void print_next_16bytes(int offset, const unsigned char *stream)
-{
-  trace("%4.4x: %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x\n",
-	offset,
-	stream[0], stream[1], stream[2], stream[3], 
-	stream[4], stream[5], stream[6], stream[7],
-	stream[8], stream[9], stream[10], stream[11], 
-	stream[12], stream[13], stream[14], stream[15]);
+static void print_next_16bytes(int offset, const unsigned char *stream) {
+    trace("%4.4x: %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x\n",
+            offset,
+            stream[0], stream[1], stream[2], stream[3],
+            stream[4], stream[5], stream[6], stream[7],
+            stream[8], stream[9], stream[10], stream[11],
+            stream[12], stream[13], stream[14], stream[15]);
 }
-
 #endif
 
 /* Global variable to return the last error found while deconding */
 static char error_string[256];
 
-static const unsigned char zigzag[64] = 
-{
-   0,  1,  5,  6, 14, 15, 27, 28,
-   2,  4,  7, 13, 16, 26, 29, 42,
-   3,  8, 12, 17, 25, 30, 41, 43,
-   9, 11, 18, 24, 31, 40, 44, 53,
-  10, 19, 23, 32, 39, 45, 52, 54,
-  20, 22, 33, 38, 46, 51, 55, 60,
-  21, 34, 37, 47, 50, 56, 59, 61,
-  35, 36, 48, 49, 57, 58, 62, 63
+static const unsigned char zigzag[64] = {
+    0,  1,  5,  6, 14, 15, 27, 28,
+    2,  4,  7, 13, 16, 26, 29, 42,
+    3,  8, 12, 17, 25, 30, 41, 43,
+    9, 11, 18, 24, 31, 40, 44, 53,
+    10, 19, 23, 32, 39, 45, 52, 54,
+    20, 22, 33, 38, 46, 51, 55, 60,
+    21, 34, 37, 47, 50, 56, 59, 61,
+    35, 36, 48, 49, 57, 58, 62, 63
 };
 
 /* Set up the standard Huffman tables (cf. JPEG standard section K.3) */
 /* IMPORTANT: these are only valid for 8-bit data precision! */
-static const unsigned char bits_dc_luminance[17] =
-{ 
-  0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 
+static const unsigned char bits_dc_luminance[17] = {
+    0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0
 };
-static const unsigned char val_dc_luminance[] =
-{
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 
+
+static const unsigned char val_dc_luminance[] = {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 };
-  
-static const unsigned char bits_dc_chrominance[17] =
-{
-  0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 
+
+static const unsigned char bits_dc_chrominance[17] = {
+    0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0
 };
-static const unsigned char val_dc_chrominance[] = 
-{
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 
+
+static const unsigned char val_dc_chrominance[] = {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 };
-  
-static const unsigned char bits_ac_luminance[17] =
-{
-  0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 0x7d 
+
+static const unsigned char bits_ac_luminance[17] = {
+    0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 0x7d
 };
-static const unsigned char val_ac_luminance[] =
-{
+
+static const unsigned char val_ac_luminance[] = {
   0x01, 0x02, 0x03, 0x00, 0x04, 0x11, 0x05, 0x12,
   0x21, 0x31, 0x41, 0x06, 0x13, 0x51, 0x61, 0x07,
   0x22, 0x71, 0x14, 0x32, 0x81, 0x91, 0xa1, 0x08,
@@ -172,13 +163,11 @@ static const unsigned char val_ac_luminance[] =
   0xf9, 0xfa
 };
 
-static const unsigned char bits_ac_chrominance[17] =
-{ 
-  0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 0x77 
+static const unsigned char bits_ac_chrominance[17] = {
+  0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 0x77
 };
 
-static const unsigned char val_ac_chrominance[] =
-{
+static const unsigned char val_ac_chrominance[] = {
   0x00, 0x01, 0x02, 0x03, 0x11, 0x04, 0x05, 0x21,
   0x31, 0x06, 0x12, 0x41, 0x51, 0x07, 0x61, 0x71,
   0x13, 0x22, 0x32, 0x81, 0x08, 0x14, 0x42, 0x91,
@@ -214,7 +203,7 @@ static const unsigned char val_ac_chrominance[] =
  *             bits.
  *  look_nbits: read nbits from the stream without marking as read.
  *  skip_nbits: read nbits from the stream but do not return the result.
- * 
+ *
  * stream: current pointer in the jpeg data (read bytes per bytes)
  * nbits_in_reservoir: number of bits filled into the reservoir
  * reservoir: register that contains bits information. Only nbits_in_reservoir
@@ -258,7 +247,7 @@ static const unsigned char val_ac_chrominance[] =
    result = ((reservoir)>>(nbits_in_reservoir-(nbits_wanted))); \
 }  while(0);
 
-/* To speed up the decoding, we assume that the reservoir have enough bit 
+/* To speed up the decoding, we assume that the reservoir have enough bit
  * slow version:
  * #define skip_nbits(reservoir,nbits_in_reservoir,stream,nbits_wanted) do { \
  *   fill_nbits(reservoir,nbits_in_reservoir,stream,(nbits_wanted)); \
@@ -287,8 +276,7 @@ static void resync(struct jdec_private *priv);
  *
  * If the code is not present for any reason, -1 is return.
  */
-static int get_next_huffman_code(struct jdec_private *priv, struct huffman_table *huffman_table)
-{
+static int get_next_huffman_code(struct jdec_private *priv, struct huffman_table *huffman_table) {
   int value, hcode;
   unsigned int extra_nbits, nbits;
   uint16_t *slowtable;
@@ -296,7 +284,7 @@ static int get_next_huffman_code(struct jdec_private *priv, struct huffman_table
   look_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, HUFFMAN_HASH_NBITS, hcode);
   value = huffman_table->lookup[hcode];
   if (__likely(value >= 0))
-  { 
+  {
      unsigned int code_size = huffman_table->code_size[value];
      skip_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, code_size);
      return value;
@@ -311,11 +299,11 @@ static int get_next_huffman_code(struct jdec_private *priv, struct huffman_table
      slowtable = huffman_table->slowtable[extra_nbits];
      /* Search if the code is in this array */
      while (slowtable[0]) {
-	if (slowtable[0] == hcode) {
-	   skip_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, nbits);
-	   return slowtable[1];
-	}
-	slowtable+=2;
+    if (slowtable[0] == hcode) {
+       skip_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, nbits);
+       return slowtable[1];
+    }
+    slowtable+=2;
      }
    }
   return 0;
@@ -366,21 +354,21 @@ static void process_Huffman_data_unit(struct jdec_private *priv, int component)
 
      if (size_val == 0)
       { /* RLE */
-	if (count_0 == 0)
-	  break;	/* EOB found, go out */
-	else if (count_0 == 0xF)
-	  j += 16;	/* skip 16 zeros */
+    if (count_0 == 0)
+      break;    /* EOB found, go out */
+    else if (count_0 == 0xF)
+      j += 16;  /* skip 16 zeros */
       }
      else
       {
-	j += count_0;	/* skip count_0 zeroes */
-	if (__unlikely(j >= 64))
-	 {
-	   snprintf(error_string, sizeof(error_string), "Bad huffman data (buffer overflow)");
-	   break;
-	 }
-	get_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, size_val, DCT[j]);
-	j++;
+    j += count_0;   /* skip count_0 zeroes */
+    if (__unlikely(j >= 64))
+     {
+       snprintf(error_string, sizeof(error_string), "Bad huffman data (buffer overflow)");
+       break;
+     }
+    get_nbits(priv->reservoir, priv->nbits_in_reservoir, priv->stream, size_val, DCT[j]);
+    j++;
       }
    }
 
@@ -390,7 +378,7 @@ static void process_Huffman_data_unit(struct jdec_private *priv, int component)
 
 /*
  * Takes two array of bits, and build the huffman table for size, and code
- * 
+ *
  * lookup will return the symbol if the code is less or equal than HUFFMAN_HASH_NBITS.
  * code_size will be used to known how many bits this symbol is encoded.
  * slowtable will be used when the first lookup didn't give the result.
@@ -403,7 +391,7 @@ static void build_huffman_table(const unsigned char *bits, const unsigned char *
   int next_free_entry;
 
   /*
-   * Build a temp array 
+   * Build a temp array
    *   huffsize[X] => numbers of bits to write vals[X]
    */
   hz = huffsize;
@@ -429,8 +417,8 @@ static void build_huffman_table(const unsigned char *bits, const unsigned char *
    {
      while (*hz == nbits)
       {
-	*hc++ = code++;
-	hz++;
+    *hc++ = code++;
+    hz++;
       }
      code <<= 1;
      nbits++;
@@ -451,26 +439,26 @@ static void build_huffman_table(const unsigned char *bits, const unsigned char *
      table->code_size[val] = code_size;
      if (code_size <= HUFFMAN_HASH_NBITS)
       {
-	/*
-	 * Good: val can be put in the lookup table, so fill all value of this
-	 * column with value val 
-	 */
-	int repeat = 1UL<<(HUFFMAN_HASH_NBITS - code_size);
-	code <<= HUFFMAN_HASH_NBITS - code_size;
-	while ( repeat-- )
-	  table->lookup[code++] = val;
+    /*
+     * Good: val can be put in the lookup table, so fill all value of this
+     * column with value val
+     */
+    int repeat = 1UL<<(HUFFMAN_HASH_NBITS - code_size);
+    code <<= HUFFMAN_HASH_NBITS - code_size;
+    while ( repeat-- )
+      table->lookup[code++] = val;
 
       }
      else
       {
-	/* Perhaps sorting the array will be an optimization */
-	uint16_t *slowtable = table->slowtable[code_size-HUFFMAN_HASH_NBITS-1];
-	while(slowtable[0])
-	  slowtable+=2;
-	slowtable[0] = code;
-	slowtable[1] = val;
-	slowtable[2] = 0;
-	/* TODO: NEED TO CHECK FOR AN OVERFLOW OF THE TABLE */
+    /* Perhaps sorting the array will be an optimization */
+    uint16_t *slowtable = table->slowtable[code_size-HUFFMAN_HASH_NBITS-1];
+    while(slowtable[0])
+      slowtable+=2;
+    slowtable[0] = code;
+    slowtable[1] = val;
+    slowtable[2] = 0;
+    /* TODO: NEED TO CHECK FOR AN OVERFLOW OF THE TABLE */
       }
 
    }
@@ -478,7 +466,7 @@ static void build_huffman_table(const unsigned char *bits, const unsigned char *
 
 static void build_default_huffman_tables(struct jdec_private *priv)
 {
-  if (   (priv->flags & TINYJPEG_FLAGS_MJPEG_TABLE) 
+  if (   (priv->flags & TINYJPEG_FLAGS_MJPEG_TABLE)
       && priv->default_huffman_table_initialized)
     return;
 
@@ -505,7 +493,7 @@ static void build_default_huffman_tables(struct jdec_private *priv)
  *      R = Y                + 1.40200 * Cr
  *      G = Y - 0.34414 * Cb - 0.71414 * Cr
  *      B = Y + 1.77200 * Cb
- * 
+ *
  ******************************************************************************/
 
 static unsigned char clamp(int i)
@@ -516,7 +504,7 @@ static unsigned char clamp(int i)
     return 255;
   else
     return i;
-}   
+}
 
 
 /**
@@ -1322,14 +1310,14 @@ static void YCrCB_to_Grey_2x2(struct jdec_private *priv)
 
 
 /*
- * Decode all the 3 components for 1x1 
+ * Decode all the 3 components for 1x1
  */
 static void decode_MCU_1x1_3planes(struct jdec_private *priv)
 {
   // Y
   process_Huffman_data_unit(priv, cY);
   IDCT(&priv->component_infos[cY], priv->Y, 8);
-  
+
   // Cb
   process_Huffman_data_unit(priv, cCb);
   IDCT(&priv->component_infos[cCb], priv->Cb, 8);
@@ -1347,7 +1335,7 @@ static void decode_MCU_1x1_1plane(struct jdec_private *priv)
   // Y
   process_Huffman_data_unit(priv, cY);
   IDCT(&priv->component_infos[cY], priv->Y, 8);
-  
+
   // Cb
   process_Huffman_data_unit(priv, cCb);
   IDCT(&priv->component_infos[cCb], priv->Cb, 8);
@@ -1526,7 +1514,7 @@ static void print_SOF(const unsigned char *stream)
   nr_components = stream[7];
 
   trace("> SOF marker\n");
-  trace("Size:%dx%d nr_components:%d (%s)  precision:%d\n", 
+  trace("Size:%dx%d nr_components:%d (%s)  precision:%d\n",
       width, height,
       nr_components, nr_components_to_string[nr_components],
       precision);
@@ -1575,7 +1563,7 @@ static int parse_DQT(struct jdec_private *priv, const unsigned char *stream)
 
   trace("> DQT marker\n");
   dqt_block_end = stream + be16_to_cpu(stream);
-  stream += 2;	/* Skip length */
+  stream += 2;  /* Skip length */
 
   while (stream < dqt_block_end)
    {
@@ -1662,12 +1650,12 @@ static int parse_SOS(struct jdec_private *priv, const unsigned char *stream)
      table = *stream++;
 #if SANITY_CHECK
      if ((table&0xf)>=4)
-	error("We do not support more than 2 AC Huffman table\n");
+    error("We do not support more than 2 AC Huffman table\n");
      if ((table>>4)>=4)
-	error("We do not support more than 2 DC Huffman table\n");
+    error("We do not support more than 2 DC Huffman table\n");
      if (cid != priv->component_infos[i].cid)
         error("SOS cid order (%d:%d) isn't compatible with the SOF marker (%d:%d)\n",
-	      i, cid, i, priv->component_infos[i].cid);
+          i, cid, i, priv->component_infos[i].cid);
      trace("ComponentId:%d  tableAC:%d tableDC:%d\n", cid, table&0xf, table>>4);
 #endif
      priv->component_infos[i].AC_table = &priv->HTAC[table&0xf];
@@ -1685,7 +1673,7 @@ static int parse_DHT(struct jdec_private *priv, const unsigned char *stream)
   int length, index;
 
   length = be16_to_cpu(stream) - 2;
-  stream += 2;	/* Skip length */
+  stream += 2;  /* Skip length */
 
   trace("> DHT marker (length=%d)\n", length);
 
@@ -1696,8 +1684,8 @@ static int parse_DHT(struct jdec_private *priv, const unsigned char *stream)
      huff_bits[0] = 0;
      count = 0;
      for (i=1; i<17; i++) {
-	huff_bits[i] = *stream++;
-	count += huff_bits[i];
+    huff_bits[i] = *stream++;
+    count += huff_bits[i];
      }
 #if SANITY_CHECK
      if (count >= HUFFMAN_BITS_SIZE)
@@ -1774,8 +1762,8 @@ static int find_next_rst_marker(struct jdec_private *priv)
    {
      while (*stream++ != 0xff)
       {
-	if (stream >= priv->stream_end)
-	  error("EOF while search for a RST marker.");
+    if (stream >= priv->stream_end)
+      error("EOF while search for a RST marker.");
       }
      /* Skip any padding ff byte (this is normal) */
      while (*stream == 0xff)
@@ -1821,30 +1809,30 @@ static int parse_JFIF(struct jdec_private *priv, const unsigned char *stream)
      switch (marker)
       {
        case SOF:
-	 if (parse_SOF(priv, stream) < 0)
-	   return -1;
-	 break;
+     if (parse_SOF(priv, stream) < 0)
+       return -1;
+     break;
        case DQT:
-	 if (parse_DQT(priv, stream) < 0)
-	   return -1;
-	 break;
+     if (parse_DQT(priv, stream) < 0)
+       return -1;
+     break;
        case SOS:
-	 if (parse_SOS(priv, stream) < 0)
-	   return -1;
-	 sos_marker_found = 1;
-	 break;
+     if (parse_SOS(priv, stream) < 0)
+       return -1;
+     sos_marker_found = 1;
+     break;
        case DHT:
-	 if (parse_DHT(priv, stream) < 0)
-	   return -1;
-	 dht_marker_found = 1;
-	 break;
+     if (parse_DHT(priv, stream) < 0)
+       return -1;
+     dht_marker_found = 1;
+     break;
        case DRI:
-	 if (parse_DRI(priv, stream) < 0)
-	   return -1;
-	 break;
+     if (parse_DRI(priv, stream) < 0)
+       return -1;
+     break;
        default:
-	 trace("> Unknown marker %2.2x\n", marker);
-	 break;
+     trace("> Unknown marker %2.2x\n", marker);
+     break;
       }
 
      stream = next_chunck;
@@ -1862,7 +1850,7 @@ static int parse_JFIF(struct jdec_private *priv, const unsigned char *stream)
   if (   (priv->component_infos[cY].Vfactor < priv->component_infos[cCb].Vfactor)
       || (priv->component_infos[cY].Vfactor < priv->component_infos[cCr].Vfactor))
     error("Vertical sampling factor for Y should be greater than vertical sampling factor for Cb or Cr\n");
-  if (   (priv->component_infos[cCb].Hfactor!=1) 
+  if (   (priv->component_infos[cCb].Hfactor!=1)
       || (priv->component_infos[cCr].Hfactor!=1)
       || (priv->component_infos[cCb].Vfactor!=1)
       || (priv->component_infos[cCr].Vfactor!=1))
@@ -1894,7 +1882,7 @@ bogus_jpeg_format:
 struct jdec_private *tinyjpeg_init(void)
 {
   struct jdec_private *priv;
- 
+
   priv = (struct jdec_private *)calloc(1, sizeof(struct jdec_private));
   if (priv == NULL)
     return NULL;
@@ -2010,11 +1998,11 @@ int tinyjpeg_decode(struct jdec_private *priv, int pixfmt)
      case TINYJPEG_FMT_YUV420P:
        colorspace_array_conv = convert_colorspace_yuv420p;
        if (priv->components[0] == NULL)
-	 priv->components[0] = (uint8_t *)malloc(priv->width * priv->height);
+     priv->components[0] = (uint8_t *)malloc(priv->width * priv->height);
        if (priv->components[1] == NULL)
-	 priv->components[1] = (uint8_t *)malloc(priv->width * priv->height/4);
+     priv->components[1] = (uint8_t *)malloc(priv->width * priv->height/4);
        if (priv->components[2] == NULL)
-	 priv->components[2] = (uint8_t *)malloc(priv->width * priv->height/4);
+     priv->components[2] = (uint8_t *)malloc(priv->width * priv->height/4);
        bytes_per_blocklines[0] = priv->width;
        bytes_per_blocklines[1] = priv->width/4;
        bytes_per_blocklines[2] = priv->width/4;
@@ -2026,7 +2014,7 @@ int tinyjpeg_decode(struct jdec_private *priv, int pixfmt)
      case TINYJPEG_FMT_RGB24:
        colorspace_array_conv = convert_colorspace_rgb24;
        if (priv->components[0] == NULL)
-	 priv->components[0] = (uint8_t *)malloc(priv->width * priv->height * 3);
+     priv->components[0] = (uint8_t *)malloc(priv->width * priv->height * 3);
        bytes_per_blocklines[0] = priv->width * 3;
        bytes_per_mcu[0] = 3*8;
        break;
@@ -2034,7 +2022,7 @@ int tinyjpeg_decode(struct jdec_private *priv, int pixfmt)
      case TINYJPEG_FMT_BGR24:
        colorspace_array_conv = convert_colorspace_bgr24;
        if (priv->components[0] == NULL)
-	 priv->components[0] = (uint8_t *)malloc(priv->width * priv->height * 3);
+     priv->components[0] = (uint8_t *)malloc(priv->width * priv->height * 3);
        bytes_per_blocklines[0] = priv->width * 3;
        bytes_per_mcu[0] = 3*8;
        break;
@@ -2043,7 +2031,7 @@ int tinyjpeg_decode(struct jdec_private *priv, int pixfmt)
        decode_mcu_table = decode_mcu_1comp_table;
        colorspace_array_conv = convert_colorspace_grey;
        if (priv->components[0] == NULL)
-	 priv->components[0] = (uint8_t *)malloc(priv->width * priv->height);
+     priv->components[0] = (uint8_t *)malloc(priv->width * priv->height);
        bytes_per_blocklines[0] = priv->width;
        bytes_per_mcu[0] = 8;
        break;
@@ -2096,22 +2084,22 @@ int tinyjpeg_decode(struct jdec_private *priv, int pixfmt)
      priv->plane[2] = priv->components[2] + (y * bytes_per_blocklines[2]);
      for (x=0; x < priv->width; x+=xstride_by_mcu)
       {
-	decode_MCU(priv);
-	convert_to_pixfmt(priv);
-	priv->plane[0] += bytes_per_mcu[0];
-	priv->plane[1] += bytes_per_mcu[1];
-	priv->plane[2] += bytes_per_mcu[2];
-	if (priv->restarts_to_go>0)
-	 {
-	   priv->restarts_to_go--;
-	   if (priv->restarts_to_go == 0)
-	    {
-	      priv->stream -= (priv->nbits_in_reservoir/8);
-	      resync(priv);
-	      if (find_next_rst_marker(priv) < 0)
-		return -1;
-	    }
-	 }
+    decode_MCU(priv);
+    convert_to_pixfmt(priv);
+    priv->plane[0] += bytes_per_mcu[0];
+    priv->plane[1] += bytes_per_mcu[1];
+    priv->plane[2] += bytes_per_mcu[2];
+    if (priv->restarts_to_go>0)
+     {
+       priv->restarts_to_go--;
+       if (priv->restarts_to_go == 0)
+        {
+          priv->stream -= (priv->nbits_in_reservoir/8);
+          resync(priv);
+          if (find_next_rst_marker(priv) < 0)
+        return -1;
+        }
+     }
       }
    }
 

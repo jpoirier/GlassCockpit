@@ -22,17 +22,15 @@
 #ifndef Messages_h
 #define Messages_h
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-enum Message
-{
-	/** Nav zoom in and out */
-	MSG_NAV_ZOOM_DECREASE,
-	MSG_NAV_ZOOM_INCREASE,
+enum Message {
+    /** Nav zoom in and out */
+    MSG_NAV_ZOOM_DECREASE,
+    MSG_NAV_ZOOM_INCREASE,
 
-	/** Application control messages */
-	MSG_APP_QUIT
+    /** Application control messages */
+    MSG_APP_QUIT
 };
 
 } // end namespace OpenGC

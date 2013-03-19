@@ -20,95 +20,86 @@
 #include "Debug.h"
 #include "GeographicObjectList.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 using namespace std;
 
-GeographicObjectList::GeographicObjectList()
-{
+GeographicObjectList::GeographicObjectList() {
+}
+
+GeographicObjectList::~GeographicObjectList() {
+    // Delete all of the objects in this list
+    GeographicObjectList::iterator it;
+
+    for (it = this->begin(); it != this->end(); ++it) {
+        if ((*it) != 0) {
+            delete (*it);
+            (*it) = 0;
+        }
+    }
 
 }
 
-GeographicObjectList::~GeographicObjectList()
-{
-	// Delete all of the objects in this list
-	GeographicObjectList::iterator it;
+bool GeographicObjectList::InitializeList(const string& filename) {
+    // Try to load the data
+    Assert(this->LoadData(filename), "unable to read data");
 
-	for (it = this->begin(); it != this->end(); ++it)
-	{
-		if( (*it) != 0)
-		{
-			delete (*it);
-			(*it) = 0;
-		}
-	}
-
+    // Do the fancy coordinate math
+    this->ComputeAdditionalCoordinates();
+    return true;
 }
 
-bool GeographicObjectList::InitializeList(const string& filename)
-{
-	// Try to load the data
-	Assert(this->LoadData(filename), "unable to read data");
+void GeographicObjectList::ComputeAdditionalCoordinates() {
+    /*
+       In general this function would compute all additional coordinate systems
+       used for mapping, but for now it does only Mercator, as defined below
 
-	// Do the fancy coordinate math
-	this->ComputeAdditionalCoordinates();
-	return true;
-}
+       L = latitude in radians (positive north)
+       Lo = longitude in radians (positive east)
+       E = easting (meters)
+       N = northing (meters)
 
-void GeographicObjectList::ComputeAdditionalCoordinates()
-{
-	/*
-	   In general this function would compute all additional coordinate systems
-	   used for mapping, but for now it does only Mercator, as defined below
+       For the sphere
 
-	   L = latitude in radians (positive north)
-	   Lo = longitude in radians (positive east)
-	   E = easting (meters)
-	   N = northing (meters)
+       E = r Lo
+       N = r ln [ tan (pi/4 + L/2) ]
 
-	   For the sphere 
+       where
 
-	   E = r Lo
-	   N = r ln [ tan (pi/4 + L/2) ]
+       r = radius of the sphere (meters)
+       ln() is the natural logarithm
+       */
 
-	   where 
+    // lat/lon of geo object in degrees
+    double lat, lon;
 
-	   r = radius of the sphere (meters)
-	   ln() is the natural logarithm
-	   */
+    // whether or not the coordinate is in the southern hemisphere
+    bool isInSouthernHemisphere;
 
-	// lat/lon of geo object in degrees
-	double lat, lon;
+    // mercator coordinates
+    double northing, easting;
 
-	// whether or not the coordinate is in the southern hemisphere
-	bool isInSouthernHemisphere;
+    GeographicObjectList::iterator it;
 
-	// mercator coordinates
-	double northing, easting;
+    for (it = this->begin(); it != this->end(); ++it) {
+        isInSouthernHemisphere = false;
 
-	GeographicObjectList::iterator it;
+        lat = (*it)->GetDegreeLat();
+        lon = (*it)->GetDegreeLon();
 
-	for (it = this->begin(); it != this->end(); ++it)
-	{
-		isInSouthernHemisphere = false;
+        if (lat < 0) {
+            isInSouthernHemisphere = true;
+            lat = lat * -1.0;
+        }
 
-		lat = (*it)->GetDegreeLat();
-		lon = (*it)->GetDegreeLon();
+        GeographicObject::LatLonToMercator(lat, lon, northing, easting);
 
-		if(lat < 0)
-		{
-			isInSouthernHemisphere = true;
-			lat = lat * -1.0;
-		}
+        if(isInSouthernHemisphere) {
+            northing = northing * -1.0;
+        }
 
-		GeographicObject::LatLonToMercator(lat, lon, northing, easting);
-
-		if(isInSouthernHemisphere)
-			northing = northing * -1.0;
-
-		(*it)->SetMercatorMeters(northing, easting);
-	}
+        (*it)->SetMercatorMeters(northing, easting);
+    }
 }
 
 } // end namespace OpenGC

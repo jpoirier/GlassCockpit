@@ -31,8 +31,8 @@
 #include "Messageable.h"
 #include "XMLParser.h"
 
-#define DEFAULT_XML_FILE		(char*)"Data/Default.xml"
-#define PREFERENCES_XML_FILE	(char*)"Data/Preferences.xml"
+#define DEFAULT_XML_FILE        (char*)"Data/Default.xml"
+#define PREFERENCES_XML_FILE    (char*)"Data/Preferences.xml"
 
 using namespace OpenGC;
 
@@ -45,90 +45,80 @@ AppObject *theApp;
 /** Print usage information */
 void usage()
 {
-	LogPrintf("usage: OpenGC [config.xml]\nIf no XML configuration file"
-		   "is provided Data/Default.xml is used.\n");
+    LogPrintf("usage: OpenGC [config.xml]\nIf no XML configuration file"
+           "is provided Data/Default.xml is used.\n");
 }
 
 /** Global idle function to handle app updates */
 void GlobalIdle(void *)
 {
-	theApp->IdleFunction();
-	Fl::repeat_timeout(globals->m_PrefManager->GetPrefD(
-				"AppUpdateRate"), GlobalIdle);
+    theApp->IdleFunction();
+    Fl::repeat_timeout(globals->m_PrefManager->GetPrefD(
+                "AppUpdateRate"), GlobalIdle);
 }
 
 /** Main entry point for the application */
-int main(int argc, char* argv[])
-{	
-	// Check the command line arguments
-	char *xmlFileName = DEFAULT_XML_FILE;
-	if (argc > 2)
-	{
-		usage();
-		return 1;
-	}
-	else if (argc == 2)
-	{
-		// Check the file exists
-		FILE *f = fopen(argv[1], "r");
-		if (f == NULL) 
-		{
-			usage();
-			return 1;
-		}
-		else
-		{
-			xmlFileName = argv[1];
-		}
-	}
-	
-	// Construct the application
-	OpenGC::globals = new Globals();
-	theApp= new AppObject();
-	
-	// Initialise preferences manager
-	globals->m_PrefManager->InitPreferences(PREFERENCES_XML_FILE);
-	
-	// Read the XML file and do some basic checks about its contents
-	XMLParser parser;
-	Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
-	Check(parser.HasNode("/"));
-	Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
-	Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
-	
-	// Set the user-defined (in XML file) application preferences
-	if (parser.HasNode("/Preferences"))
-	{
-		globals->m_PrefManager->SetPrefsFromXML(parser.GetNode("/Preferences"));
-	}
+int main(int argc, char* argv[]) {
+    // Check the command line arguments
+    char *xmlFileName = DEFAULT_XML_FILE;
+    if (argc > 2) {
+        usage();
+        return 1;
+    } else if (argc == 2) {
+        // Check the file exists
+        FILE *f = fopen(argv[1], "r");
+        if (f == NULL) {
+            usage();
+            return 1;
+        } else {
+            xmlFileName = argv[1];
+        }
+    }
 
-	// Set RasterMaps path
-	globals->m_RasterMapManager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-			globals->m_PrefManager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+    // Construct the application
+    OpenGC::globals = new Globals();
+    theApp = new AppObject();
 
-	// FIXME debug:
-	globals->m_PrefManager->PrintAll();
+    // Initialise preferences manager
+    globals->m_PrefManager->InitPreferences(PREFERENCES_XML_FILE);
 
-	// Set the update rate in nominal seconds per frame
-	Fl::add_timeout(globals->m_PrefManager->GetPrefD(
-				"AppUpdateRate"), GlobalIdle);
+    // Read the XML file and do some basic checks about its contents
+    XMLParser parser;
+    Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
+    Check(parser.HasNode("/"));
+    Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
+    Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
 
-	// Run up the application
-	int retval;
-	XMLNode rootNode = parser.GetNode("/");
-	if (theApp->Go(rootNode)) {
-		LogPrintf("Done, exiting cleanly.\n");
-		retval = 0;
-	}
-	else {
-		LogPrintf("Error, exiting.\n");
-		retval = 1;
-	}
+    // Set the user-defined (in XML file) application preferences
+    if (parser.HasNode("/Preferences")) {
+        globals->m_PrefManager->SetPrefsFromXML(parser.GetNode("/Preferences"));
+    }
 
-	// Clean up
-	delete theApp;
-	delete globals;
+    // Set RasterMaps path
+    globals->m_RasterMapManager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS,
+            globals->m_PrefManager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
 
-	return retval;
+    // FIXME debug:
+    globals->m_PrefManager->PrintAll();
+
+    // Set the update rate in nominal seconds per frame
+    Fl::add_timeout(globals->m_PrefManager->GetPrefD("AppUpdateRate"), GlobalIdle);
+
+    // Run up the application
+    int retval;
+    XMLNode rootNode = parser.GetNode("/");
+    if (theApp->Go(rootNode)) {
+        LogPrintf("Done, exiting cleanly.\n");
+        retval = 0;
+    } else {
+        LogPrintf("Error, exiting.\n");
+        retval = 1;
+    }
+
+    // Clean up
+    delete theApp;
+    delete globals;
+
+    return retval;
 }
 

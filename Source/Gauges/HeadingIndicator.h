@@ -24,23 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class HeadingIndicator : public GaugeComponent  
-{
-	public:
+class HeadingIndicator : public GaugeComponent {
+    public:
+        HeadingIndicator();
+        virtual ~HeadingIndicator();
 
-		HeadingIndicator();
-		virtual ~HeadingIndicator();
+        /** Overloaded render function */
+        void Render();
 
-		/** Overloaded render function */
-		void Render();
-
-	protected:
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
 };
 

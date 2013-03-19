@@ -39,6 +39,6 @@ conf["linklibs"].append('xml2')
 conf["linklibs"].append('z')
 
 # Build the library
-Library('#build/opengc_base', source, CPPPATH=conf["inc_path"], 
+Library('#build/opengc_base', source, CPPPATH=conf["inc_path"],
 	CCFLAGS=conf["cflags"], CXX=conf['compiler'])
 

@@ -18,21 +18,14 @@
 #include <cmath>
 #include "FlightCourse.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 using namespace std;
 
-FlightCourse::FlightCourse()
-{
-	m_Director_Point = NULL;
+FlightCourse::FlightCourse() {
 }
 
-}
-
-FlightCourse::~FlightCourse()
-{
-	
+FlightCourse::~FlightCourse() {
 }
 
 } // end namespace OpenGC

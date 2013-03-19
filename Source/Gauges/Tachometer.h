@@ -20,22 +20,18 @@
 
 #include "PieDial.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class Tachometer : public PieDial
-{
-	public:
-		Tachometer();
-		virtual ~Tachometer();
+class Tachometer : public PieDial {
+    public:
+        Tachometer();
+        virtual ~Tachometer();
+        void Render();
 
-		void Render();
-
-	protected:
-		virtual void RenderArc(CircleEvaluator *circ);
-		virtual void RenderTicks(CircleEvaluator *circ);
-		
-		double m_MaxYellow, m_MaxRed;
+    protected:
+        virtual void RenderArc(CircleEvaluator *circ);
+        virtual void RenderTicks(CircleEvaluator *circ);
+        double m_MaxYellow, m_MaxRed;
 };
 
 } // end namespace OpenGC

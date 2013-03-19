@@ -17,6 +17,6 @@ source = [
 ]
 
 # Build the library
-Library('#build/opengc_datasource', source, CPPPATH=conf["inc_path"], 
+Library('#build/opengc_datasource', source, CPPPATH=conf["inc_path"],
 	CCFLAGS=conf["cflags"], CXX=conf['compiler'])
 

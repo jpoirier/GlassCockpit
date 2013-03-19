@@ -33,26 +33,24 @@
 #include "OrderedPair.h"
 #include "RenderObject.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class GaugeComponent: public RenderObject
-{
-	public:
-		GaugeComponent();
-		virtual ~GaugeComponent();
+class GaugeComponent: public RenderObject {
+    public:
+        GaugeComponent();
+        virtual ~GaugeComponent();
 
-		/** Render the gauge component */
-		virtual void Render();
+        /** Render the gauge component */
+        virtual void Render();
 
-		/** Return true if the click is inside the gauge component */
-		bool ClickTest(int button, int state, int x, int y);
+        /** Return true if the click is inside the gauge component */
+        bool ClickTest(int button, int state, int x, int y);
 
-		/** Set to true to have an opaque background */
-		void SetOpaque(bool opaque) { m_Opaque = opaque; }
+        /** Set to true to have an opaque background */
+        void SetOpaque(bool opaque) { m_Opaque = opaque; }
 
-	private:
-		bool m_Opaque;
+    private:
+        bool m_Opaque;
 };
 
 } // end namespace OpenGC

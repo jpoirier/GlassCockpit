@@ -20,6 +20,6 @@ Program('#build/GlassCockpit', source, CPPPATH=conf["inc_path"], CXX=conf['compi
 
 # Build the utility program navconvert (navigation data -> binary converter)
 Program('#build/navconvert', ['NavConvertMain.cpp',
-	'#/../../Source/Navigation/BinaryNavData.o'], CPPPATH=conf["inc_path"], 
+	'#/../../Source/Navigation/BinaryNavData.o'], CPPPATH=conf["inc_path"],
 	CXX=conf['compiler'], CCFLAGS=conf["cflags"], LINKFLAGS=conf["linkflags"])
- 
+

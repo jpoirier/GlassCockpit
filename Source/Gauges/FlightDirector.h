@@ -24,21 +24,19 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class FlightDirector : public GaugeComponent
-{
-	public:
-		FlightDirector();
-		virtual ~FlightDirector();
+class FlightDirector : public GaugeComponent {
+    public:
+        FlightDirector();
+        virtual ~FlightDirector();
 
-		/** Overloaded render function */
-		void Render();
+        /** Overloaded render function */
+        void Render();
 
-	protected:
-		/** The font number provided to us by the font manager */
-		int m_Font;
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 };
 
 } // end namespace OpenGC

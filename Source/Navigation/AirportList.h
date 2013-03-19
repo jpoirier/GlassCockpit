@@ -21,18 +21,16 @@
 #include <list>
 #include "GeographicObjectList.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class AirportList : public GeographicObjectList
-{
+class AirportList : public GeographicObjectList {
 public:
-	AirportList();
-	virtual ~AirportList();
+    AirportList();
+    virtual ~AirportList();
 
-	/** Read binary file containing airport database,
-	 * returns true if successful, else false */
-	bool LoadData(const string& fileName);
+    /** Read binary file containing airport database,
+     * returns true if successful, else false */
+    bool LoadData(const string& fileName);
 };
 
 } // end namespace OpenGC

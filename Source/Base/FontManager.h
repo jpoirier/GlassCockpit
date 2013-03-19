@@ -36,58 +36,56 @@
 #include <string>
 #include "Font.h"
 
-namespace OpenGC
-{
-	
+namespace OpenGC {
+
 using namespace std;
 
-class FontManager  
-{
-	public:
-		FontManager();
-		~FontManager();
+class FontManager {
+    public:
+        FontManager();
+        ~FontManager();
 
-		/**
-		 * Request that we load the default gauge font
-		 * This is nice because we can globally change the default and
-		 * affect all of the gagues
-		 */
-		int LoadDefaultFont();
+        /**
+         * Request that we load the default gauge font
+         * This is nice because we can globally change the default and
+         * affect all of the gagues
+         */
+        int LoadDefaultFont();
 
-		/**
-		 * Request that a new font be loaded; returns the index of the font
-		 * in the font list (vector)
-		 */
-		int LoadFont(const string& name);
+        /**
+         * Request that a new font be loaded; returns the index of the font
+         * in the font list (vector)
+         */
+        int LoadFont(const string& name);
 
-		/** Set the size of a particular font in physical units */
-		void SetSize(int font, double x, double y);
+        /** Set the size of a particular font in physical units */
+        void SetSize(int font, double x, double y);
 
-		/** Set whether to render a font right-aligned */
-		void SetRightAligned(int font, bool rightAligned);
+        /** Set whether to render a font right-aligned */
+        void SetRightAligned(int font, bool rightAligned);
 
-		/** Print a character string at location (x,y) using specified font */
-		void Print(double x, double y, const char* text, int font);
+        /** Print a character string at location (x,y) using specified font */
+        void Print(double x, double y, const char* text, int font);
 
-	protected:
+    protected:
 
-		/** Path to Truetype fonts */
-		static string m_FontPath;
+        /** Path to Truetype fonts */
+        static string m_FontPath;
 
-		/**
-		 * String used to hold the value of the font name with full path
-		 */
-		string m_NameWithPath;
+        /**
+         * String used to hold the value of the font name with full path
+         */
+        string m_NameWithPath;
 
-		/** How many fonts are loaded */
-		int m_NumFonts;
+        /** How many fonts are loaded */
+        int m_NumFonts;
 
-		/**
-		 * The vector that holds Font objects
-		 * We use a vector rather than a true linked list to allow random access
-		 * to fonts, rather than having to traverse the entire list each time
-		 */
-		std::vector<Font*> m_FontList;
+        /**
+         * The vector that holds Font objects
+         * We use a vector rather than a true linked list to allow random access
+         * to fonts, rather than having to traverse the entire list each time
+         */
+        std::vector<Font*> m_FontList;
 };
 
 } // end namespace OpenGC

@@ -4,5 +4,12 @@
 **perspectivev3
 **.sconsign.dblite
 **.o
+**.xcuserdatad
+**DerivedData
+**archived
+**FTGL_OSX
+Data/MGMapsCache~
+Data/MGMapsCache~~
 Data/Navigation/apt_dat.bin
 Data/Navigation/nav_dat.bin
+PlatformSupport/iOS/GlassCockpit.xcodeproj/project.xcworkspace/

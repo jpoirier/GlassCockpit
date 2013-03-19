@@ -19,25 +19,20 @@
 #include "GeographicObject.h"
 #include "Constants.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-GeographicObject::GeographicObject()
-{
-	m_AltitudeMeters=0.0;
-	m_DegreeLat=0.0;
-	m_DegreeLon=0.0;
+GeographicObject::GeographicObject() {
+    m_AltitudeMeters = 0.0;
+    m_DegreeLat = 0.0;
+    m_DegreeLon = 0.0;
 }
 
-GeographicObject::~GeographicObject()
-{
-
+GeographicObject::~GeographicObject() {
 }
 
-void GeographicObject::LatLonToMercator(double lat, double lon, double &northing, double &easting)
-{
-	easting = EARTH_RADIUS * (lon * DEG_TO_RAD);
-	northing = EARTH_RADIUS * log(tan(M_PI / 4.0 + (lat * DEG_TO_RAD) / 2.0));
+void GeographicObject::LatLonToMercator(double lat, double lon, double &northing, double &easting) {
+    easting = EARTH_RADIUS * (lon * DEG_TO_RAD);
+    northing = EARTH_RADIUS * log(tan(M_PI / 4.0 + (lat * DEG_TO_RAD) / 2.0));
 }
 
 } // end namespace OpenGC

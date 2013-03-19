@@ -20,17 +20,15 @@
 
 #include "DataSource.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class AlbatrossDataSource : public DataSource
-{
-	public:
-		AlbatrossDataSource();
-		~AlbatrossDataSource();
+class AlbatrossDataSource : public DataSource {
+    public:
+        AlbatrossDataSource();
+        ~AlbatrossDataSource();
 
-		// The money function
-		bool OnIdle();
+        // The money function
+        bool OnIdle();
 };
 
 } // end namespace OpenGC

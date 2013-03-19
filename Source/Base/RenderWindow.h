@@ -34,79 +34,77 @@
 #include "OrderedPair.h"
 #include "Gauge.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class RenderWindow
-{
-	public:
-		/** Constructor is responsible for initing a few variables */
-		RenderWindow();
+class RenderWindow {
+    public:
+        /** Constructor is responsible for initing a few variables */
+        RenderWindow();
 
-		~RenderWindow();
+        ~RenderWindow();
 
-		/** Call to reset projection on resize. */
-		void Resize(int x, int y);
+        /** Call to reset projection on resize. */
+        void Resize(int x, int y);
 
-		/** Initialize GL parameters. */
-		void SetupDisplay();
-	
-		void ForceIsOKToRender(bool newVal) { m_IsOKToRender = newVal; }
+        /** Initialize GL parameters. */
+        void SetupDisplay();
 
-		/** Render the entire window. */
-		void Render();
+        void ForceIsOKToRender(bool newVal) { m_IsOKToRender = newVal; }
 
-		/** Add a gauge to the window */
-		void AddGauge(Gauge* pGauge);
+        /** Render the entire window. */
+        void Render();
 
-		/** Iterates through the gauges and invokes the render method */
-		void RenderGauges();
+        /** Add a gauge to the window */
+        void AddGauge(Gauge* pGauge);
 
-		/** Check to see if an extension exists */
-		GLboolean CheckExtension( char *extName );
+        /** Iterates through the gauges and invokes the render method */
+        void RenderGauges();
 
-		/** Keyboard callback
-		 * keycode: ASCII code where available, else undefined
-		 * modifiers: 0x01 =  shift, 0x04 = ctrl, 0x08 = alt, 0x40 = meta
-		 */
-		void CallBackKeyboardFunc(int keycode, int modifiers);
+        /** Check to see if an extension exists */
+        GLboolean CheckExtension( char *extName );
 
-		/**  Mouse callback
-		 * button: 1 = left, 2 = middle, 3 = right
-		 * state: 0 = down, 1 = up FIXME drag/move
-		 */
-		void CallBackMouseFunc(int button, int state, int x, int y);
+        /** Keyboard callback
+         * keycode: ASCII code where available, else undefined
+         * modifiers: 0x01 =  shift, 0x04 = ctrl, 0x08 = alt, 0x40 = meta
+         */
+        void CallBackKeyboardFunc(int keycode, int modifiers);
 
-		/** Returns the mm/pixel for this render window */
-		double GetUnitsPerPixel() { return m_UnitsPerPixel; }
+        /**  Mouse callback
+         * button: 1 = left, 2 = middle, 3 = right
+         * state: 0 = down, 1 = up FIXME drag/move
+         */
+        void CallBackMouseFunc(int button, int state, int x, int y);
 
-	protected:
+        /** Returns the mm/pixel for this render window */
+        double GetUnitsPerPixel() { return m_UnitsPerPixel; }
 
-		/** Window height and width in pixels */
-		OrderedPair<unsigned int> m_WindowSize;
+    protected:
 
-		/**
-		 * Physical size of a pixel (assumed to be square) in mm
-		 * for the purpose of drawing gauges in approximately
-		 * the correct physical size on the monitor. It's also correct to
-		 * refer to this as the dot pitch of the monitor in mm.
-		 */
-		double m_UnitsPerPixel;
+        /** Window height and width in pixels */
+        OrderedPair<unsigned int> m_WindowSize;
 
-		/** Parameters for the orthographic projection */
-		float m_OrthoParams[6];
+        /**
+         * Physical size of a pixel (assumed to be square) in mm
+         * for the purpose of drawing gauges in approximately
+         * the correct physical size on the monitor. It's also correct to
+         * refer to this as the dot pitch of the monitor in mm.
+         */
+        double m_UnitsPerPixel;
 
-		/** All of the guages */
-		std::list<Gauge*> m_GaugeList;
+        /** Parameters for the orthographic projection */
+        float m_OrthoParams[6];
 
-		/** The number of gauges used in the display */
-		int m_NumGauges;
+        /** All of the guages */
+        std::list<Gauge*> m_GaugeList;
 
-		/** True if the render window has been initialized */
-		bool m_DisplayIsInitialized;
+        /** The number of gauges used in the display */
+        int m_NumGauges;
 
-		/** True if it's safe to render things */
-		bool m_IsOKToRender;
+        /** True if the render window has been initialized */
+        bool m_DisplayIsInitialized;
+
+        /** True if it's safe to render things */
+        bool m_IsOKToRender;
 };
 
 } // end namespace OpenGC

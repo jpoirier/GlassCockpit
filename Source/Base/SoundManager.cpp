@@ -23,9 +23,8 @@ namespace OpenGC {
 SoundManager::SoundManager() {}
 SoundManager::~SoundManager() {}
 
-void SoundManager::PlaySound(sound_t snd)
-{
-	printf("FIXME: play sound %d\n", snd);
+void SoundManager::PlaySound(sound_t snd) {
+    printf("FIXME: play sound %d\n", snd);
 }
 
 } // end namespace OpenGC

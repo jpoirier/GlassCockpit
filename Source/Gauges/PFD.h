@@ -24,17 +24,15 @@
 
 #include "Gauge.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class PFD : public Gauge  
-{
-	public:
-		PFD();
-		virtual ~PFD();
+class PFD : public Gauge {
+    public:
+        PFD();
+        virtual ~PFD();
 
-		/** Overloaded render function */
-		void Render();
+        /** Overloaded render function */
+        void Render();
 };
 
 } // end namespace OpenGC

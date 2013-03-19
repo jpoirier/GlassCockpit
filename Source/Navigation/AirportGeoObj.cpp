@@ -17,17 +17,12 @@
 
 #include "AirportGeoObj.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-AirportGeoObj::AirportGeoObj()
-{
-
+AirportGeoObj::AirportGeoObj() {
 }
 
-AirportGeoObj::~AirportGeoObj()
-{
-
+AirportGeoObj::~AirportGeoObj() {
 }
 
 } // end namespace OpenGC

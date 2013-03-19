@@ -5,7 +5,7 @@
  * This file is part of the Independent JPEG Group's software.
  *
  * The authors make NO WARRANTY or representation, either express or implied,
- * with respect to this software, its quality, accuracy, merchantability, or 
+ * with respect to this software, its quality, accuracy, merchantability, or
  * fitness for a particular purpose.  This software is provided "AS IS", and you,
  * its user, assume the entire risk as to its quality and accuracy.
  *
@@ -25,16 +25,16 @@
  * (3) Permission for use of this software is granted only if the user accepts
  * full responsibility for any undesirable consequences; the authors accept
  * NO LIABILITY for damages of any kind.
- * 
+ *
  * These conditions apply to any software derived from or based on the IJG code,
  * not just to the unmodified library.  If you use our work, you ought to
  * acknowledge us.
- * 
+ *
  * Permission is NOT granted for the use of any IJG author's name or company name
  * in advertising or publicity relating to this software or products derived from
  * it.  This software may be referred to only as "the Independent JPEG Group's
  * software".
- * 
+ *
  * We specifically permit and encourage the use of this software as the basis of
  * commercial products, provided that all warranty or liability claims are
  * assumed by the product vendor.
@@ -75,7 +75,7 @@
 #include "tinyjpeg-internal.h"
 
 #define FAST_FLOAT float
-#define DCTSIZE	   8
+#define DCTSIZE    8
 #define DCTSIZE2   (DCTSIZE*DCTSIZE)
 
 #define DEQUANTIZE(coef,quantval)  (((FAST_FLOAT) (coef)) * (quantval))
@@ -84,16 +84,19 @@
 
 static inline unsigned char descale_and_clamp(int x, int shift)
 {
+// XXX: fixme
+#if 0
   __asm__ (
       "add %3,%1\n"
       "\tsar %2,%1\n"
       "\tsub $-128,%1\n"
-      "\tcmovl %5,%1\n"	/* Use the sub to compare to 0 */
-      "\tcmpl %4,%1\n" 
+      "\tcmovl %5,%1\n" /* Use the sub to compare to 0 */
+      "\tcmpl %4,%1\n"
       "\tcmovg %4,%1\n"
-      : "=r"(x) 
+      : "=r"(x)
       : "0"(x), "Ir"(shift), "ir"(1UL<<(shift-1)), "r" (0xff), "r" (0)
       );
+#endif
   return x;
 }
 
@@ -110,7 +113,7 @@ static inline unsigned char descale_and_clamp(int x, int shift)
     return 255;
   else if (x<0)
     return 0;
-  else 
+  else
     return x;
 }
 #endif
@@ -119,9 +122,7 @@ static inline unsigned char descale_and_clamp(int x, int shift)
  * Perform dequantization and inverse DCT on one block of coefficients.
  */
 
-void
-tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
-{
+void tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride) {
   FAST_FLOAT tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7;
   FAST_FLOAT tmp10, tmp11, tmp12, tmp13;
   FAST_FLOAT z5, z10, z11, z12, z13;
@@ -146,14 +147,14 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
      * With typical images and quantization tables, half or more of the
      * column DCT calculations can be simplified this way.
      */
-    
+
     if (inptr[DCTSIZE*1] == 0 && inptr[DCTSIZE*2] == 0 &&
-	inptr[DCTSIZE*3] == 0 && inptr[DCTSIZE*4] == 0 &&
-	inptr[DCTSIZE*5] == 0 && inptr[DCTSIZE*6] == 0 &&
-	inptr[DCTSIZE*7] == 0) {
+    inptr[DCTSIZE*3] == 0 && inptr[DCTSIZE*4] == 0 &&
+    inptr[DCTSIZE*5] == 0 && inptr[DCTSIZE*6] == 0 &&
+    inptr[DCTSIZE*7] == 0) {
       /* AC terms all zero */
       FAST_FLOAT dcval = DEQUANTIZE(inptr[DCTSIZE*0], quantptr[DCTSIZE*0]);
-      
+
       wsptr[DCTSIZE*0] = dcval;
       wsptr[DCTSIZE*1] = dcval;
       wsptr[DCTSIZE*2] = dcval;
@@ -162,13 +163,13 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
       wsptr[DCTSIZE*5] = dcval;
       wsptr[DCTSIZE*6] = dcval;
       wsptr[DCTSIZE*7] = dcval;
-      
-      inptr++;			/* advance pointers to next column */
+
+      inptr++;          /* advance pointers to next column */
       quantptr++;
       wsptr++;
       continue;
     }
-    
+
     /* Even part */
 
     tmp0 = DEQUANTIZE(inptr[DCTSIZE*0], quantptr[DCTSIZE*0]);
@@ -176,17 +177,17 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
     tmp2 = DEQUANTIZE(inptr[DCTSIZE*4], quantptr[DCTSIZE*4]);
     tmp3 = DEQUANTIZE(inptr[DCTSIZE*6], quantptr[DCTSIZE*6]);
 
-    tmp10 = tmp0 + tmp2;	/* phase 3 */
+    tmp10 = tmp0 + tmp2;    /* phase 3 */
     tmp11 = tmp0 - tmp2;
 
-    tmp13 = tmp1 + tmp3;	/* phases 5-3 */
+    tmp13 = tmp1 + tmp3;    /* phases 5-3 */
     tmp12 = (tmp1 - tmp3) * ((FAST_FLOAT) 1.414213562) - tmp13; /* 2*c4 */
 
-    tmp0 = tmp10 + tmp13;	/* phase 2 */
+    tmp0 = tmp10 + tmp13;   /* phase 2 */
     tmp3 = tmp10 - tmp13;
     tmp1 = tmp11 + tmp12;
     tmp2 = tmp11 - tmp12;
-    
+
     /* Odd part */
 
     tmp4 = DEQUANTIZE(inptr[DCTSIZE*1], quantptr[DCTSIZE*1]);
@@ -194,19 +195,19 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
     tmp6 = DEQUANTIZE(inptr[DCTSIZE*5], quantptr[DCTSIZE*5]);
     tmp7 = DEQUANTIZE(inptr[DCTSIZE*7], quantptr[DCTSIZE*7]);
 
-    z13 = tmp6 + tmp5;		/* phase 6 */
+    z13 = tmp6 + tmp5;      /* phase 6 */
     z10 = tmp6 - tmp5;
     z11 = tmp4 + tmp7;
     z12 = tmp4 - tmp7;
 
-    tmp7 = z11 + z13;		/* phase 5 */
+    tmp7 = z11 + z13;       /* phase 5 */
     tmp11 = (z11 - z13) * ((FAST_FLOAT) 1.414213562); /* 2*c4 */
 
     z5 = (z10 + z12) * ((FAST_FLOAT) 1.847759065); /* 2*c2 */
     tmp10 = ((FAST_FLOAT) 1.082392200) * z12 - z5; /* 2*(c2-c6) */
     tmp12 = ((FAST_FLOAT) -2.613125930) * z10 + z5; /* -2*(c2+c6) */
 
-    tmp6 = tmp12 - tmp7;	/* phase 2 */
+    tmp6 = tmp12 - tmp7;    /* phase 2 */
     tmp5 = tmp11 - tmp6;
     tmp4 = tmp10 + tmp5;
 
@@ -219,11 +220,11 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
     wsptr[DCTSIZE*4] = tmp3 + tmp4;
     wsptr[DCTSIZE*3] = tmp3 - tmp4;
 
-    inptr++;			/* advance pointers to next column */
+    inptr++;            /* advance pointers to next column */
     quantptr++;
     wsptr++;
   }
-  
+
   /* Pass 2: process rows from work array, store into output array. */
   /* Note that we must descale the results by a factor of 8 == 2**3. */
 
@@ -235,7 +236,7 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
      * the simplification applies less often (typically 5% to 10% of the time).
      * And testing floats for zero is relatively expensive, so we don't bother.
      */
-    
+
     /* Even part */
 
     tmp10 = wsptr[0] + wsptr[4];
@@ -278,8 +279,8 @@ tinyjpeg_idct_float (struct component *compptr, uint8_t *output_buf, int stride)
     outptr[4] = descale_and_clamp((int)(tmp3 + tmp4), 3);
     outptr[3] = descale_and_clamp((int)(tmp3 - tmp4), 3);
 
-    
-    wsptr += DCTSIZE;		/* advance pointer to next row */
+
+    wsptr += DCTSIZE;       /* advance pointer to next row */
     outptr += stride;
   }
 }

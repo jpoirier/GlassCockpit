@@ -19,7 +19,7 @@ conf = {
 		'#../../Source/Navigation',
 		'#../../Source/DataSources',
 		'#../../Source/Application',
-		'/usr/include/freetype2', 
+		'/usr/include/freetype2',
 		'/usr/include/FTGL'
 	],
 	"cflags": '-O2 -Wall -Wformat',

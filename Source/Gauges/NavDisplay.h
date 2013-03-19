@@ -20,62 +20,56 @@
 
 #include "Gauge.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class NavDisplay : public Gauge
-{
-	public:
+class NavDisplay : public Gauge {
+    public:
+        NavDisplay();
+        virtual ~NavDisplay();
+        void Render();
+        /** Called if the down mouse click applies to this object */
+        void OnMouseDown(int button, double physicalX, double physicalY);
 
-		NavDisplay();
-		virtual ~NavDisplay();
+    protected:
+        //////////// Graphics Functions ///////////////////////////////////////
+        void PlotCourse();
+        void PlotWaypoints();
+        void PlotWindSpeedDirection();
+        void PlotMap();
 
-		void Render();
+        /** Display geographic objects such as airports or navaids on the map */
+        void PlotGeoObjs(std::list<GeographicObject*>& geoList);
 
-		/** Called if the down mouse click applies to this object */
-		void OnMouseDown(int button, double physicalX, double physicalY);
+        //////////// Helper functions /////////////////////////////////////////
 
-	protected:
+        /** Convert mercator coordinates in meters into pixels relative to
+         *  gauge center (where the aircraft is) */
+        void PointToPixelCoord(double objNorthing, double objEasting, double &xPos, double &yPos);
 
-		//////////// Graphics Functions ///////////////////////////////////////
+        /** Check if an object is visible */
+        bool PixelCoordIsVisible(double xPos, double yPos);
 
-		void PlotCourse();
-		void PlotWaypoints();
-		void PlotWindSpeedDirection();
-		void PlotMap();
+        //////////// Variables ////////////////////////////////////////////////
 
-		/** Display geographic objects such as airports or navaids on the map */
-		void PlotGeoObjs(std::list<GeographicObject*>& geoList);
+        /** The height (and width) of the component in nautical miles */
+        double m_SizeNM;
 
-		//////////// Helper functions /////////////////////////////////////////
-		
-		/** Convert mercator coordinates in meters into pixels relative to
-		 *  gauge center (where the aircraft is) */
-		void PointToPixelCoord(double objNorthing, double objEasting, double &xPos, double &yPos);
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
-		/** Check if an object is visible */
-		bool PixelCoordIsVisible(double xPos, double yPos);
-		
-		//////////// Variables ////////////////////////////////////////////////
-		
-		/** The height (and width) of the component in nautical miles */
-		double m_SizeNM;
+        /** Coordinates etc. used in graphics functions */
+        double aircraftLat, aircraftLon, aircraftHeading;
+        double mercatorNorthing, mercatorEasting;
 
-		/** The font number provided to us by the font manager */
-		int m_Font;
+        /** Compile-time layout options */
+        static const double CENTER_X;
+        static const double CENTER_Y;
+        static const double OVERLAY_Y;
+        static const int compass_interval = 20; // interval in degrees between compass markings
 
-		/** Coordinates etc. used in graphics functions */
-		double aircraftLat, aircraftLon, aircraftHeading;
-		double mercatorNorthing, mercatorEasting;
-		
-		/** Compile-time layout options */
-		static const double CENTER_X = 90.0, CENTER_Y = 95.0, OVERLAY_Y = 45.0;
-		static const int compass_interval = 20; // interval in degrees between compass markings
-	
-		/** Raster map tile texture handles */
-		static GLuint m_TileTextures[49];
-		static bool m_TilesInitted;
-	
+        /** Raster map tile texture handles */
+        static GLuint m_TileTextures[49];
+        static bool m_TilesInitted;
 };
 
 } // end namespace OpenGC

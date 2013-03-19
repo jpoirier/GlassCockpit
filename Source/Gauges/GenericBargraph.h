@@ -20,35 +20,30 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 typedef float (AirframeDataContainer::*AirframeMemFn)();
 
-class GenericBargraph : public GaugeComponent
-{
-	public:
+class GenericBargraph : public GaugeComponent {
+    public:
+        GenericBargraph();
+        virtual ~GenericBargraph();
+        void Render();
 
-		GenericBargraph();
-		virtual ~GenericBargraph();
+        /** Set a function pointer to the Airframe->Get__() function */
+        void SetDataSource(AirframeMemFn fn) {m_DataFn = fn; }
 
-		void Render();
+        /** Set the range of values displayed on this gauge */
+        void SetMinMax(double min, double max) {m_Min = min; m_Max = max; }
 
-		/** Set a function pointer to the Airframe->Get__() function */
-		void SetDataSource(AirframeMemFn fn) {m_DataFn = fn; }
+        /** Set the thresholds which if the value drops below the colour will change */
+        void SetColourRanges(double maxYellow, double maxRed) {m_MaxYellow = maxYellow; m_MaxRed = maxRed; }
 
-		/** Set the range of values displayed on this gauge */
-		void SetMinMax(double min, double max) {m_Min = min; m_Max = max; }
-
-		/** Set the thresholds which if the value drops below the colour will change */
-		void SetColourRanges(double maxYellow, double maxRed) {m_MaxYellow = maxYellow; m_MaxRed = maxRed; }
-
-	protected:
-
-		int m_Font;
-		AirframeMemFn m_DataFn;
-		double m_Min, m_Max;
-		double m_MaxYellow, m_MaxRed;
+    protected:
+        int m_Font;
+        AirframeMemFn m_DataFn;
+        double m_Min, m_Max;
+        double m_MaxYellow, m_MaxRed;
 };
 
 } // end namespace OpenGC

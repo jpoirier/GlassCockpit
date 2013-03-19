@@ -15,20 +15,14 @@
     See Copyright.txt or http://opengc.sourceforge.net/licensing.html for more information.
 =========================================================================*/
 
-
 #include "WaypointGeoObj.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-WaypointGeoObj::WaypointGeoObj()
-{
-
+WaypointGeoObj::WaypointGeoObj() {
 }
 
-WaypointGeoObj::~WaypointGeoObj()
-{
-
+WaypointGeoObj::~WaypointGeoObj() {
 }
 
 } // end namespace OpenGC

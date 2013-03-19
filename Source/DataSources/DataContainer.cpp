@@ -17,22 +17,15 @@
 
 #include "DataContainer.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-DataContainer::DataContainer()
-{
-
+DataContainer::DataContainer() {
 }
 
-DataContainer::~DataContainer()
-{
-
+DataContainer::~DataContainer() {
 }
 
-void DataContainer::InitializeData()
-{
-
+void DataContainer::InitializeData() {
 }
 
 } // end namespace OpenGC

@@ -20,14 +20,12 @@
 
 #include "GeographicObject.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class AirportGeoObj : public GeographicObject
-{
+class AirportGeoObj : public GeographicObject {
 public:
-	AirportGeoObj();
-	virtual ~AirportGeoObj();
+    AirportGeoObj();
+    virtual ~AirportGeoObj();
 };
 
 } // end namespace OpenGC

@@ -20,17 +20,15 @@
 
 #include "GeographicObjectList.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class WaypointList : public GeographicObjectList
-{
+class WaypointList : public GeographicObjectList {
 public:
-	WaypointList();
-	virtual ~WaypointList();
+    WaypointList();
+    virtual ~WaypointList();
 
-	// Read a file contain waypoints, returns true if successful, else false
-	bool LoadData(const string& fileName);
+    // Read a file contain waypoints, returns true if successful, else false
+    bool LoadData(const string& fileName);
 };
 
 } // end namespace OpenGC

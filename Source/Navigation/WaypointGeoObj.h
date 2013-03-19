@@ -20,21 +20,16 @@
 
 #include "GeographicObject.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class WaypointGeoObj : public GeographicObject
-{
+class WaypointGeoObj : public GeographicObject {
 public:
-	WaypointGeoObj();
-	virtual ~WaypointGeoObj();
-
-	void SetStyle(int style) { m_Style = style; }
-
-	enum {STYLE_FUNDAMENTAL, STYLE_INTERP};
-
+    WaypointGeoObj();
+    virtual ~WaypointGeoObj();
+    void SetStyle(int style) { m_Style = style; }
+    enum {STYLE_FUNDAMENTAL, STYLE_INTERP};
 protected:
-	int m_Style;
+    int m_Style;
 };
 
 } // end namespace OpenGC

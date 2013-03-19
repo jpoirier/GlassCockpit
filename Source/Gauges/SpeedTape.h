@@ -24,25 +24,21 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
-class SpeedTape : public GaugeComponent  
-{
-	public:
+class SpeedTape : public GaugeComponent {
+    public:
+        SpeedTape();
+        virtual ~SpeedTape();
 
-		SpeedTape();
-		virtual ~SpeedTape();
+        /** Overloaded render function */
+        void Render();
 
-		/** Overloaded render function */
-		void Render();
+    protected:
+        /** The font number provided to us by the font manager */
+        int m_Font;
 
-	protected:
-
-		/** The font number provided to us by the font manager */
-		int m_Font;
-
-		double indent_x;  // defines region of speed tape
+        double indent_x;  // defines region of speed tape
 };
 
 } // end namespace OpenGC

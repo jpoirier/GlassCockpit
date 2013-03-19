@@ -20,29 +20,24 @@
 
 #include "GaugeComponent.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
 
 typedef float (AirframeDataContainer::*AirframeMemFn)();
 
-class MarkedDial : public GaugeComponent  
-{
-	public:
+class MarkedDial : public GaugeComponent {
+    public:
+        MarkedDial();
+        virtual ~MarkedDial();
+        void Render();
+        void SetDataSource(AirframeMemFn fn) {m_DataFn = fn;}
+        void SetMinMax(double min, double max) {m_Min = min; m_Max = max;}
+        void SetTickSpacing(double spacing) {m_TickSpacing = spacing;}
+        void SetTickDivisor(double divisor) {m_TickDivisor = divisor;}
 
-		MarkedDial();
-		virtual ~MarkedDial();
-
-		void Render();
-		void SetDataSource(AirframeMemFn fn) {m_DataFn = fn; }
-		void SetMinMax(double min, double max) {m_Min = min; m_Max = max; }
-		void SetTickSpacing(double spacing) {m_TickSpacing = spacing; }
-		void SetTickDivisor(double divisor) {m_TickDivisor = divisor; }
-
-	protected:
-
-		int m_Font;
-		AirframeMemFn m_DataFn;
-		double m_Min, m_Max, m_TickSpacing, m_TickDivisor;
+    protected:
+        int m_Font;
+        AirframeMemFn m_DataFn;
+        double m_Min, m_Max, m_TickSpacing, m_TickDivisor;
 };
 
 }
